@@ -6,8 +6,21 @@ class Frame extends React.Component{
     this.state = {
       selected: false,
       drawing: false,
+      drawings : {
+          1: null,
+          2: null,
+          3: null,
+          4: null,
+          5: null,
+          6: null,
+          7: null,
+          8: null,
+          9: null
+        }
     };
+
     this.handleClick = this.handleClick.bind(this);
+    this.saveDrawing = this.saveDrawing.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -26,6 +39,10 @@ class Frame extends React.Component{
         y: 0
     };
   }
+
+   saveDrawing(e){
+        
+    }
 
   componentDidMount() {
     this.drawFrame();

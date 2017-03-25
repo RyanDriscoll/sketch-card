@@ -114,3 +114,7 @@ body {
     float: left; }
   .main-nextcard .glyphicon-arrow-right {
     float: left; }
+
+.btn {
+  margin: 4px
+}
