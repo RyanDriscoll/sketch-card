@@ -1,0 +1,2 @@
+export const RECEIVE_GAMES = 'RECEIVE_GAMES';
+export const SELECT_GAME = 'SELECT_GAME';

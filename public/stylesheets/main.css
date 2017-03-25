@@ -121,11 +121,5 @@ body {
     font-weight: bold;
     font-size: 2.3em;
     margin-left: 10%; }
-  .main-nextcard .glyphicon-arrow-left {
-    float: left; }
   .main-nextcard .glyphicon-arrow-right {
     float: left; }
-
-.btn {
-  margin: 4px
-}
