@@ -1,4 +1,6 @@
 import React from 'react';
+import ComponentOne from './ComponentOne.jsx';
+import DisplayInfo from './DisplayInfo.jsx';
 
 class Frame extends React.Component{
   constructor(props){
@@ -6,13 +8,32 @@ class Frame extends React.Component{
     this.state = {
       selected: false,
       drawing: false,
+      drawings : {
+          1: null,
+          2: null,
+          3: null,
+          4: null,
+          5: null,
+          6: null,
+          7: null,
+          8: null,
+          9: null
+        },
+        batter: 1,
+        inning: 1,
+        drawingdata: null
     };
+
     this.handleClick = this.handleClick.bind(this);
+    this.saveDrawing = this.saveDrawing.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.drawFrame = this.drawFrame.bind(this);
     this.draw = this.draw.bind(this);
+    this.addBatter = this.addBatter.bind(this);
+    this.subtractBatter = this.subtractBatter.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.scale = 5;
 
@@ -26,6 +47,10 @@ class Frame extends React.Component{
         y: 0
     };
   }
+
+   saveDrawing(e){
+        
+    }
 
   componentDidMount() {
     this.drawFrame();
@@ -115,18 +140,50 @@ class Frame extends React.Component{
     }
   }
 
+  handleSubmit(){
+        let canvas = document.getElementById('testcanvas');
+        let dataURL = canvas.toDataURL();
+        console.log("DATAURL", dataURL)
+        this.setState({
+          drawingdata: dataURL
+        });
+    }
+
+    addBatter(e){
+        let value = this.state.batter;
+        value++;
+        this.setState({
+        batter: value,
+    })
+     this.handleSubmit();
+    }
+
+    subtractBatter(e){
+        let value = this.state.batter;
+        value--;
+        this.setState({
+        batter: value,
+    })
+     this.handleSubmit();
+    }
+
   render(){
     return (
-      <canvas
-        onClick={this.handleClick}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-        onMouseMove={this.handleMouseMove}
-        className="frame shadow"
-        width="300px"
-        height="400px"
-        ref={el => {this.canvas = el;}}
-      />
+      <div>
+        <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
+        <canvas
+          onClick={this.handleClick}
+          id={"testcanvas"}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          onMouseMove={this.handleMouseMove}
+          className="frame shadow"
+          width="300px"
+          height="400px"
+          ref={el => {this.canvas = el;}}
+        />
+        <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
+      </div>
     )
   }
 }
