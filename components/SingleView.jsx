@@ -1,20 +1,23 @@
 import React from 'react';
 import Frame from './Frame.jsx';
+import {connect} from 'react-redux';
 import ComponentOne from './ComponentOne.jsx';
 import DisplayInfo from './DisplayInfo.jsx';
+import saveDrawing from '../actions/drawings.jsx';
 
-class SingleView extends React.Component {
+export class SingleView extends React.Component {
 
     constructor(props){
     super(props)
       this.state = {
         batter: 1,
         inning: 1,
-        data: null
+        drawingdata: null
       }
      this.addBatter = this.addBatter.bind(this);
      this.subtractBatter = this.subtractBatter.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.drawFrame = this.drawFrame.bind(this)
   }
 
     componentDidMount() {
@@ -22,26 +25,67 @@ class SingleView extends React.Component {
     }
 
     handleSubmit(){
+        let canvas = document.getElementById('testcanvas');
         let dataURL = canvas.toDataURL();
-        console.log(dataURL);
+        let context = canvas.getContext("2d");
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        this.drawFrame(context)
+        
     }
 
     addBatter(e){
-        console.log("BATTER", this.state.batter)
+        let value = this.state.batter;
+        value++;
         this.setState({
-        batter: this.state.batter++,
+        batter: value,
     })
-     console.log("BATTER", this.state.batter);
      this.handleSubmit();
     }
 
     subtractBatter(e){
-        console.log("e", e)
+        let value = this.state.batter;
+        value--;
         this.setState({
-        batter: this.state.batter--,
-        })
-        
+        batter: value,
+    })
+     this.handleSubmit();
     }
+
+drawFrame(context) {
+    context.save();
+    context.translate(150, 100)
+    context.rotate(Math.PI/4);
+    context.lineWidth = 5;
+    context.strokeStyle = '#e5e5e5';
+    context.strokeRect(0, 0, 130, 130);
+    context.restore();
+
+    context.lineWidth = 3;
+    context.strokeStyle = '#e5e5e5';
+    context.moveTo(5, 5);
+    context.lineTo(15, 15);
+    context.stroke();
+    context.moveTo(15, 5);
+    context.lineTo(5, 15);
+    context.stroke();
+
+    for (let col = 0; col < 3; col++) {
+      for (let row = 0; row < 2; row++) {
+        let y = row % 2 === 0 ? 345 : 295;
+        let x = col * 50 + 5;
+        if (col === 2 && row === 1 ) {
+          break;
+        }
+        context.save();
+        context.translate(x, y);
+        context.lineWidth = 5;
+        context.strokeStyle = '#e5e5e5';
+        context.strokeRect(0, 0, 50, 50);
+        context.restore();
+      }
+    }
+  }
+
 
     render() {
         return (
@@ -54,4 +98,22 @@ class SingleView extends React.Component {
     }
 }
 
-export default SingleView;
+function mapStateToProps(state){
+  
+  return {
+  }
+}
+  
+function mapDispatchToProps(dispatch){
+
+      return {
+        addDrawing: function(drawing){
+          dispatch(saveDrawing(drawing));
+      }
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps)(SingleView);
+

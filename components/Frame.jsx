@@ -7,21 +7,7 @@ class Frame extends React.Component{
     super(props);
     this.state = {
       selected: false,
-      drawing: false,
-      drawings : {
-          1: null,
-          2: null,
-          3: null,
-          4: null,
-          5: null,
-          6: null,
-          7: null,
-          8: null,
-          9: null
-        },
-        batter: 1,
-        inning: 1,
-        drawingdata: null
+      drawing: false
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -31,9 +17,7 @@ class Frame extends React.Component{
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.drawFrame = this.drawFrame.bind(this);
     this.draw = this.draw.bind(this);
-    this.addBatter = this.addBatter.bind(this);
-    this.subtractBatter = this.subtractBatter.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
 
     this.scale = 5;
 
@@ -106,8 +90,8 @@ class Frame extends React.Component{
 
   handleMouseDown(e) {
     this.setState({drawing: true})
-    this.currentMousePosition.x = ((e.pageX - (this.canvas.offsetLeft - (this.canvas.clientWidth * ((this.scale - 1) / 2)))) * (this.canvas.width / this.canvas.clientWidth)) / this.scale;
-    this.currentMousePosition.y = ((e.pageY - (this.canvas.offsetTop - (this.canvas.clientHeight * ((this.scale - 1) / 2)))) * (this.canvas.height / this.canvas.clientHeight)) / this.scale;
+    this.currentMousePosition.x = e.pageX;
+    this.currentMousePosition.y = e.pageY;
   }
 
   handleMouseUp(e) {
@@ -120,9 +104,8 @@ class Frame extends React.Component{
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
-    this.currentMousePosition.x = ((e.pageX - (this.canvas.offsetLeft - (this.canvas.clientWidth * ((this.scale - 1) / 2)))) * (this.canvas.width / this.canvas.clientWidth)) / this.scale;
-    this.currentMousePosition.y = ((e.pageY - (this.canvas.offsetTop - (this.canvas.clientHeight * ((this.scale - 1) / 2)))) * (this.canvas.height / this.canvas.clientHeight)) / this.scale;
-
+    this.currentMousePosition.x = e.pageX;
+    this.currentMousePosition.y = e.pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
   }
 
@@ -140,37 +123,9 @@ class Frame extends React.Component{
     }
   }
 
-  handleSubmit(){
-        let canvas = document.getElementById('testcanvas');
-        let dataURL = canvas.toDataURL();
-        console.log("DATAURL", dataURL)
-        this.setState({
-          drawingdata: dataURL
-        });
-    }
-
-    addBatter(e){
-        let value = this.state.batter;
-        value++;
-        this.setState({
-        batter: value,
-    })
-     this.handleSubmit();
-    }
-
-    subtractBatter(e){
-        let value = this.state.batter;
-        value--;
-        this.setState({
-        batter: value,
-    })
-     this.handleSubmit();
-    }
-
   render(){
     return (
       <div>
-        <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
         <canvas
           onClick={this.handleClick}
           id={"testcanvas"}
@@ -182,7 +137,6 @@ class Frame extends React.Component{
           height="400px"
           ref={el => {this.canvas = el;}}
         />
-        <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
       </div>
     )
   }
