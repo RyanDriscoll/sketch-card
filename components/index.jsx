@@ -5,7 +5,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import {AppContainer} from './AppContainer';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
-import SingleView from './SingleView.jsx';
+import Frame from './Frame.jsx';
 import LineupContainer from '../containers/LineupContainer.jsx';
 import { getGames } from '../actions/games';
 import scoreCard from '../containers/scoreCard.jsx';
@@ -23,8 +23,10 @@ ReactDOM.render(
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
                 <Route path ="/componentone" component={ComponentOne} />
+
                 <Route path ="/componenttwo" component={SingleView} />
                 <Route path ="/scorecard" component={scoreCard} />
+
             </Route>
         </Router>
     </Provider>,
