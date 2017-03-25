@@ -17,7 +17,7 @@ ReactDOM.render(
                 <IndexRoute component={HomeContainer} />
                 <Route path ="/componentone" component={ComponentOne} />
                 <Route path ="/componenttwo" component={SingleView} />
-                  <Route path ="/scorecard" component={LineupContainer} />
+                <Route path ="/scorecard" component={LineupContainer} />
             </Route>
         </Router>
     </Provider>,
