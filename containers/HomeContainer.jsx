@@ -18,7 +18,6 @@ constructor(props) {
         return (
         <div>
             <div>
-                <Navbar />
                 <Home games={this.props.games}/>
             </div>
         </div>
