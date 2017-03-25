@@ -15,7 +15,12 @@ export class LineupContainer extends Component {
 
       }
       this.onTeamSubmit = this.onTeamSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this)
 
+  }
+
+  handleChange(e){
+    console.log('HANDLE CHNG', e.target.value)
 
   }
 
@@ -28,11 +33,12 @@ export class LineupContainer extends Component {
 
   render(){
     let roster = this.state.roster
+
     return (
       <div>
         <ol>
         <li>
-        <select>
+        <select value={this.state.lineup} onChange={this.handleChange}>
           {
             roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
