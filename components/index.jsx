@@ -30,12 +30,8 @@ ReactDOM.render(
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
                 <Route path ="/componentone" component={ComponentOne} />
-
-
                 <Route path ="/componenttwo" component={SingleView} />
                 <Route path ="/scorecard" component={scoreCard} />
-
-
             </Route>
         </Router>
     </Provider>,
