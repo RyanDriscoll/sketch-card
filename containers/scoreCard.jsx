@@ -21,8 +21,8 @@ class scoreCard extends Component {
   render(){
     return (
       <div id="container">
-        <button onClick={this.clickHome} type="button home-button" id="button1" >${}</button>
-        <button onClick={this.clickAway} type="button contact-button" id="button2">${}</button>
+        <button onClick={this.clickHome} type="button home-button" id="button1" >{"Reds"}</button>
+        <button onClick={this.clickAway} type="button contact-button" id="button2">{"Athletics"}</button>
       </div>
 
     )
