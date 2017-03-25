@@ -10,27 +10,31 @@ export class LineupContainer extends Component {
     super(props)
       this.state = {
         team: '',
-        lineup: [{name: 'heyward'}, {name: 'baez'}, {name: 'bryant'}, {name: 'Rizzo'}]
+        roster: [{name: 'heyward'}, {name: 'baez'}, {name: 'bryant'}, {name: 'Rizzo'}],
+        lineup: []
+
       }
+      this.onTeamSubmit = this.onTeamSubmit.bind(this)
 
 
   }
 
   onTeamSubmit(e){
+    console.log('ON TEAM SUBMIT', e.target.value)
     e.preventDefault()
     console.log('LINUP TARGET', e.target.value)
     this.setState({lineup: [...e.target.value]})
   }
 
   render(){
-    let lineup = this.state.lineup
+    let roster = this.state.roster
     return (
       <div>
         <ol>
         <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -40,7 +44,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -50,7 +54,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -60,7 +64,7 @@ export class LineupContainer extends Component {
         <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -70,7 +74,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -80,7 +84,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -90,7 +94,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -100,7 +104,7 @@ export class LineupContainer extends Component {
           <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -110,7 +114,7 @@ export class LineupContainer extends Component {
         <li>
         <select>
           {
-            lineup && lineup.map((playerObj, index) => {
+            roster && roster.map((playerObj, index) => {
               return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
             })
         }
@@ -119,7 +123,7 @@ export class LineupContainer extends Component {
 
       </ol>
 
-      <button className="btn-btn-primary" >Submit</button>
+      <button className="btn-btn-primary" onClick={this.onTeamSubmit}>Submit</button>
       </div>
 
     )
