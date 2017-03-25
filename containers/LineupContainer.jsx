@@ -26,6 +26,71 @@ export default class LineupContainer extends Component {
         }
         </select>
 
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+        <select>
+          {
+            lineup && lineup.map((playerObj, index) => {
+              return  <option value={playerObj.name} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+        }
+        </select>
+
+
       </div>
 
     )
