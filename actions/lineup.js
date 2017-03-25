@@ -17,9 +17,9 @@ export const addLineup = (lineup) => {
 };
 
 
-export const getTeam = (teamName) => {
+export const getTeam = (teamId) => {
   return dispatch => {
-    return axios.get('/api/team/name')
+    return axios.get('/team/:teamId')
       .then((res) => res.data)
       .then((team) => {
         dispatch(receiveTeam(team));
@@ -34,6 +34,7 @@ export const createLineup = (playerObj) => {
   };
 };
 
+
 // export const addUserPermission = (board) => {
 //   return dispatch => {
 //     return axios.post('/api/boards/permissions', {board})
@@ -45,10 +46,10 @@ export const createLineup = (playerObj) => {
 // };
 
 
-// export const getLinup = (team) => {
+// export const getLineup = (team) => {
 //   return dispatch => {
 //
-//     let players
+//
 //
 //         dispatch(createLinup());
 //       });
