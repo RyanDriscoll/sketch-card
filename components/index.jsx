@@ -7,8 +7,8 @@ import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 import SingleView from './SingleView.jsx';
 import LineupContainer from '../containers/LineupContainer.jsx';
-
 import { getGames } from '../actions/games';
+import scoreCard from '../containers/scoreCard.jsx';
 
 import {Provider} from 'react-redux';
 import store from '../store';
@@ -24,7 +24,7 @@ ReactDOM.render(
                 <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
                 <Route path ="/componentone" component={ComponentOne} />
                 <Route path ="/componenttwo" component={SingleView} />
-                <Route path ="/scorecard" component={LineupContainer} />
+                <Route path ="/scorecard" component={scoreCard} />
             </Route>
         </Router>
     </Provider>,
