@@ -3,9 +3,9 @@
 
 const express = require('express');
 const router = express.Router();
-const users = require('./users');
+const gameData = require('./game_data');
 
-router.use('/users', users);
+router.use('/game_data', gameData);
 
 router.use(function (req, res) {
   res.status(404).end();
