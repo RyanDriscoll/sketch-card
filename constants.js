@@ -4,5 +4,6 @@ export const SET_INNING = 'SET_INNING'
 export const ADD_PLAYER = 'ADD_PLAYER'
 export const ADD_LINEUP = 'ADD_LINEUP'
 
-const RECEIVE_GAMES = 'RECEIVE_GAMES'
-const SELECT_GAME = 'SELECT_GAME'
+export const RECEIVE_GAMES = 'RECEIVE_GAMES'
+export const RECEIVE_FRAMES = 'RECEIVE_FRAMES'
+export const SELECT_GAME = 'SELECT_GAME'

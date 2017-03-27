@@ -1,11 +1,8 @@
 import React from 'react';
 import Frame from './Frame.jsx';
 import {connect} from 'react-redux';
-import ComponentOne from './ComponentOne.jsx';
-import DisplayInfo from './DisplayInfo.jsx';
-import saveDrawing from '../actions/drawings.jsx';
 
-export class SingleView extends React.Component {
+export class InningView extends React.Component {
 
     constructor(props){
     super(props)
@@ -88,15 +85,21 @@ drawFrame(context) {
   }
 
 
-    render() {
-        return (
-        <div>
-            <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-            <Frame/>
-            <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
-        </div>
-        );
+  render() {
+    const inning = 1; //this.props.inning
+    const frameArray = [];
+    for (let atBat = 1; atBat <= 9; atBat++) {
+      frameArray.push(<Frame inning={inning} atBat={atBat} />);
     }
+
+    return (
+      <div>
+        {
+          frameArray
+        }
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state){
@@ -107,14 +110,11 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
 
-      return {
-        addDrawing: function(drawing){
-          dispatch(saveDrawing(drawing));
-      }
+  return {
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)(SingleView);
+  mapDispatchToProps)(InningView);
 

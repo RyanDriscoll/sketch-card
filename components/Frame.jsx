@@ -7,11 +7,12 @@ class Frame extends React.Component{
     super(props);
     this.state = {
       selected: false,
-      drawing: false
+      drawing: false,
+      paths: [],
+      points: []
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.saveDrawing = this.saveDrawing.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -31,10 +32,6 @@ class Frame extends React.Component{
         y: 0
     };
   }
-
-   saveDrawing(e){
-        
-    }
 
   componentDidMount() {
     this.drawFrame();
@@ -89,38 +86,47 @@ class Frame extends React.Component{
   }
 
   handleMouseDown(e) {
-    this.setState({drawing: true})
+    this.setState({
+      drawing: true,
+      points: []
+    });
     this.currentMousePosition.x = e.pageX;
     this.currentMousePosition.y = e.pageY;
   }
 
   handleMouseUp(e) {
-    this.setState({drawing: false});
+    this.setState({
+      drawing: false,
+      paths: [...this.state.paths, this.state.points]
+    });
   }
 
   handleMouseMove(e) {
-    if (!this.state.drawing || !this.state.selected) return;
-
+    if (!this.state.drawing ) return;
+    console.log('this.state.paths', this.state.paths)
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
     this.currentMousePosition.x = e.pageX;
     this.currentMousePosition.y = e.pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
+    this.setState({
+      points: [...this.state.points, this.currentMousePosition]
+    });
   }
 
   handleClick(e) {
     e.preventDefault();
-    if (!this.state.selected) {
-     
-      this.setState({selected: !this.state.selected});
-    } else {
-      console.log(this.currentMousePosition.x, this.currentMousePosition.y)
-      if (this.currentMousePosition.x < 20 && this.currentMousePosition.y < 20) {
-        this.zoom.reverse();
-        this.setState({selected: !this.state.selected});
-      }
-    }
+    // if (!this.state.selected) {
+
+    //   this.setState({selected: !this.state.selected});
+    // } else {
+    //   console.log(this.currentMousePosition.x, this.currentMousePosition.y)
+    //   if (this.currentMousePosition.x < 20 && this.currentMousePosition.y < 20) {
+    //     this.zoom.reverse();
+    //     this.setState({selected: !this.state.selected});
+    //   }
+    // }
   }
 
   render(){

@@ -6,14 +6,13 @@ import {AppContainer} from './AppContainer';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 
-import SingleView from './SingleView.jsx';
-
 
 import {LineupContainer} from '../containers/LineupContainer.jsx';
 
 import Frame from './Frame.jsx';
 
 import { getGames } from '../actions/games';
+import { getFrames } from '../actions/frames';
 import scoreCard from '../containers/scoreCard.jsx';
 
 
@@ -24,6 +23,11 @@ function onHomeEnter() {
     store.dispatch(getGames());
 }
 
+function onScoreCardEnter(nextState) {
+    const inning = nextState.params.inning;
+    store.dispatch(getFrames(inning));
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
@@ -32,7 +36,7 @@ ReactDOM.render(
                 <Route path ="/componentone" component={ComponentOne} />
                 <Route path ="/singleview" component={SingleView} />
                 <Route path ="/scorecard" component={scoreCard} />
-                  <Route path ="/lineup" component={LineupContainer} />
+                <Route path ="/lineup" component={LineupContainer} />
             </Route>
         </Router>
     </Provider>,
