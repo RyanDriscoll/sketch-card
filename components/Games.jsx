@@ -1,7 +1,8 @@
-import React from 'react';
+/*import React from 'react';
 import { Link } from 'react-router';
 
 const Games = (props) => (
+  <div>
     <ul>
       {
         props.games && props.games.map(game => {
@@ -13,6 +14,7 @@ const Games = (props) => (
         })
       }
     </ul>
+  </div>
 );
 
-export default Games;
+export default Games;*/

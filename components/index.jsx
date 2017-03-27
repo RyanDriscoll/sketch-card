@@ -6,6 +6,9 @@ import {AppContainer} from './AppContainer';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 
+import SingleView from './SingleView.jsx';
+
+
 import {LineupContainer} from '../containers/LineupContainer.jsx';
 
 import Frame from './Frame.jsx';
@@ -27,11 +30,9 @@ ReactDOM.render(
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
                 <Route path ="/componentone" component={ComponentOne} />
-
-                <Route path ="/componenttwo" component={SingleView} />
+                <Route path ="/singleview" component={SingleView} />
                 <Route path ="/scorecard" component={scoreCard} />
                   <Route path ="/lineup" component={LineupContainer} />
-
             </Route>
         </Router>
     </Provider>,
