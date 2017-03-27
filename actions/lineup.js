@@ -9,7 +9,7 @@ export const receiveTeam = (team) => {
   };
 };
 
-export const addLineup = (lineup) => {
+export const addLineup = (lineupObj) => {
   return {
     type: ADD_LINEUP,
     lineup
@@ -45,22 +45,13 @@ export const createLineup = (playerObj) => {
 //   };
 // };
 
-
-// export const getLineup = (team) => {
+//
+// export const getLineup = (TeamArr) => {
 //   return dispatch => {
 //
 //
 //
-//         dispatch(createLinup());
+//         dispatch(createLinup(TeamArr));
 //       });
 //   };
 // };
-
-
-export const deleteLinup = (boardId) => (dispatch) => {
-  return axios.delete(`/api/boards/${boardId}`)
-    .then((res) => res.data)
-    .then((board) => {
-      dispatch(getAllBoards());
-    });
-};
