@@ -20,8 +20,6 @@ export class SingleView extends React.Component {
      this.drawFrame = this.drawFrame.bind(this)
   }
 
-    componentDidMount() {
-    }
 
     handleSubmit(){
         let canvas = document.getElementById('testcanvas');
