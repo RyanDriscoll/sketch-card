@@ -12,7 +12,6 @@ class Frame extends React.Component{
       points: []
     };
 
-    this.handleClick = this.handleClick.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -113,7 +112,7 @@ class Frame extends React.Component{
     });
   }
 
- 
+
 
   render(){
     return (
