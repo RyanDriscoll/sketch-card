@@ -20,9 +20,6 @@ export class SingleView extends React.Component {
      this.drawFrame = this.drawFrame.bind(this)
   }
 
-    componentDidMount() {
-    
-    }
 
     handleSubmit(){
         let canvas = document.getElementById('testcanvas');
@@ -30,7 +27,7 @@ export class SingleView extends React.Component {
         let context = canvas.getContext("2d");
         context.clearRect(0, 0, canvas.width, canvas.height);
         this.drawFrame(context)
-        
+
     }
 
     addBatter(e){
@@ -88,22 +85,20 @@ drawFrame(context) {
 
 
     render() {
+      const x = this.props.params.x
+      const y = this.props.params.y
         return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-            <Frame/>
+            <Frame x={x} y={y} selected={true}/>
             <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
         </div>
         );
     }
 }
 
-function mapStateToProps(state){
-  
-  return {
-  }
-}
-  
+
+
 function mapDispatchToProps(dispatch){
 
       return {
@@ -114,6 +109,5 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(
-  mapStateToProps, 
   mapDispatchToProps)(SingleView);
 
