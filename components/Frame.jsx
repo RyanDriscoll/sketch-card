@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {receiveFrame} from '../actions/frames';
+import {receivePaths} from '../actions/frames';
 
 class Frame extends React.Component{
   constructor(props){
@@ -19,33 +19,26 @@ class Frame extends React.Component{
     this.drawFrame = this.drawFrame.bind(this);
     this.draw = this.draw.bind(this);
 
-    this.currentMousePosition = {
-        x: 0,
-        y: 0
-    };
+    this.currentMousePosition = { x: 0, y: 0 };
 
-    this.lastMousePosition = {
-        x: 0,
-        y: 0
-    };
+    this.lastMousePosition = { x: 0, y: 0 };
   }
 
   componentDidMount() {
     this.drawFrame();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('in receive props')
-    nextProps.frames[this.props.x][this.props.y].forEach(frame => {
-      for (let i = 0; i < frame.length; i++) {
-        this.draw(frame[i], frame[i + 1]);
-      }
-    });
+    if (this.props.frames[this.props.x][this.props.y]) {
+      this.props.frames[this.props.x][this.props.y].forEach(path => {
+        for (let i = 0; i < path.length - 1; i++) {
+          this.draw(path[i], path[i + 1]);
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
-    console.log('unmounted', this.props, this.state.paths)
-    this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
+    if (this.props.selected) {
+      this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
+    }
   }
 
   drawFrame() {
@@ -57,15 +50,6 @@ class Frame extends React.Component{
     this.ctx.strokeStyle = '#e5e5e5';
     this.ctx.strokeRect(0, 0, 130, 130);
     this.ctx.restore();
-
-    this.ctx.lineWidth = 3;
-    this.ctx.strokeStyle = '#e5e5e5';
-    this.ctx.moveTo(5, 5);
-    this.ctx.lineTo(15, 15);
-    this.ctx.stroke();
-    this.ctx.moveTo(15, 5);
-    this.ctx.lineTo(5, 15);
-    this.ctx.stroke();
 
     for (let col = 0; col < 3; col++) {
       for (let row = 0; row < 2; row++) {
@@ -97,23 +81,27 @@ class Frame extends React.Component{
   }
 
   handleMouseDown(e) {
-    this.setState({
-      drawing: true,
-      points: []
-    });
-    this.currentMousePosition.x = e.pageX;
-    this.currentMousePosition.y = e.pageY;
+    if (this.props.selected) {
+      this.setState({
+        drawing: true,
+        points: [{x: e.pageX, y: e.pageY}]
+      });
+      this.currentMousePosition.x = e.pageX;
+      this.currentMousePosition.y = e.pageY;
+    }
   }
 
   handleMouseUp(e) {
-    this.setState({
-      drawing: false,
-      paths: [...this.state.paths, this.state.points]
-    });
+    if (this.props.selected) {
+      this.setState({
+        drawing: false,
+        paths: [...this.state.paths, this.state.points]
+      });
+    }
   }
 
   handleMouseMove(e) {
-    if (!this.state.drawing ) return;
+    if (!this.state.drawing || !this.props.selected) return;
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
@@ -121,7 +109,7 @@ class Frame extends React.Component{
     this.currentMousePosition.y = e.pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
     this.setState({
-      points: [...this.state.points, this.currentMousePosition]
+      points: this.state.points.concat([{x: e.pageX, y: e.pageY}])
     });
   }
 
@@ -149,16 +137,16 @@ class Frame extends React.Component{
 }
 
 function mapStateToProps(state){
-  console.log('mstp', state)
+  console.log('mapping state to props')
   return {
-    frames: state.frames.frames
+    frames: state.frames
   };
 }
 
 function mapDispatchToProps(dispatch){
     return {
-      saveFrame: function(frame, x, y){
-        dispatch(receiveFrame(frame, x, y));
+      saveFrame: function(paths, x, y){
+        dispatch(receivePaths(paths, x, y));
     }
   };
 }

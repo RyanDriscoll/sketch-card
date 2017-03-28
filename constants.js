@@ -5,5 +5,5 @@ export const ADD_PLAYER = 'ADD_PLAYER'
 export const ADD_LINEUP = 'ADD_LINEUP'
 
 export const RECEIVE_GAMES = 'RECEIVE_GAMES'
-export const SET_FRAME = 'SET_FRAME'
+export const ADD_PATHS = 'ADD_PATHS'
 export const SELECT_GAME = 'SELECT_GAME'

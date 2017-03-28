@@ -21,7 +21,6 @@ export class SingleView extends React.Component {
   }
 
     componentDidMount() {
-      console.log('props.params', this.props.params)
     }
 
     handleSubmit(){
@@ -52,7 +51,6 @@ export class SingleView extends React.Component {
     }
 
 drawFrame(context) {
-  console.log('in drawFrame')
     context.save();
     context.translate(150, 100)
     context.rotate(Math.PI/4);
@@ -94,7 +92,7 @@ drawFrame(context) {
         return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-            <Frame x={x} y={y} />
+            <Frame x={x} y={y} selected={true}/>
             <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
         </div>
         );

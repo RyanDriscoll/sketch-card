@@ -1,18 +1,17 @@
-import {SET_FRAME} from '../constants';
+import {ADD_PATHS} from '../constants';
 
-export const setFrame = (frame, x, y) => {
-  console.log('in receiveFrame')
+export const setPaths = (paths, x, y) => {
   return {
-    type: SET_FRAME,
-    frame,
+    type: ADD_PATHS,
+    paths,
     x,
     y
   };
 };
 
-export const receiveFrame = (frame, x, y) => {
+export const receivePaths = (paths, x, y) => {
   return dispatch => {
-    dispatch(setFrame(frame, x, y));
+    dispatch(setPaths(paths, x, y));
   };
 };
 
