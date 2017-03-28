@@ -1,43 +1,44 @@
 import React from 'react';
-import ComponentOne from './ComponentOne.jsx';
-import DisplayInfo from './DisplayInfo.jsx';
+import {connect} from 'react-redux';
+
+import {receivePaths} from '../actions/frames';
 
 class Frame extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      selected: false,
-      drawing: false
+      drawing: false,
+      paths: [],
+      points: []
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.saveDrawing = this.saveDrawing.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.drawFrame = this.drawFrame.bind(this);
     this.draw = this.draw.bind(this);
 
+    this.currentMousePosition = { x: 0, y: 0 };
 
-    this.scale = 5;
-
-    this.currentMousePosition = {
-        x: 0,
-        y: 0
-    };
-
-    this.lastMousePosition = {
-        x: 0,
-        y: 0
-    };
+    this.lastMousePosition = { x: 0, y: 0 };
   }
-
-   saveDrawing(e){
-        
-    }
 
   componentDidMount() {
     this.drawFrame();
+    if (this.props.frames[this.props.x][this.props.y]) {
+      this.props.frames[this.props.x][this.props.y].forEach(path => {
+        for (let i = 0; i < path.length - 1; i++) {
+          this.draw(path[i], path[i + 1]);
+        }
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.selected) {
+      this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
+    }
   }
 
   drawFrame() {
@@ -49,15 +50,6 @@ class Frame extends React.Component{
     this.ctx.strokeStyle = '#e5e5e5';
     this.ctx.strokeRect(0, 0, 130, 130);
     this.ctx.restore();
-
-    this.ctx.lineWidth = 3;
-    this.ctx.strokeStyle = '#e5e5e5';
-    this.ctx.moveTo(5, 5);
-    this.ctx.lineTo(15, 15);
-    this.ctx.stroke();
-    this.ctx.moveTo(15, 5);
-    this.ctx.lineTo(5, 15);
-    this.ctx.stroke();
 
     for (let col = 0; col < 3; col++) {
       for (let row = 0; row < 2; row++) {
@@ -89,39 +81,39 @@ class Frame extends React.Component{
   }
 
   handleMouseDown(e) {
-    this.setState({drawing: true})
-    this.currentMousePosition.x = e.pageX;
-    this.currentMousePosition.y = e.pageY;
+    if (this.props.selected) {
+      this.setState({
+        drawing: true,
+        points: [{x: e.pageX, y: e.pageY}]
+      });
+      this.currentMousePosition.x = e.pageX;
+      this.currentMousePosition.y = e.pageY;
+    }
   }
 
   handleMouseUp(e) {
-    this.setState({drawing: false});
+    if (this.props.selected) {
+      this.setState({
+        drawing: false,
+        paths: [...this.state.paths, this.state.points]
+      });
+    }
   }
 
   handleMouseMove(e) {
-    if (!this.state.drawing || !this.state.selected) return;
-
+    if (!this.state.drawing || !this.props.selected) return;
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
     this.currentMousePosition.x = e.pageX;
     this.currentMousePosition.y = e.pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
+    this.setState({
+      points: this.state.points.concat([{x: e.pageX, y: e.pageY}])
+    });
   }
 
-  handleClick(e) {
-    e.preventDefault();
-    if (!this.state.selected) {
-     
-      this.setState({selected: !this.state.selected});
-    } else {
-      console.log(this.currentMousePosition.x, this.currentMousePosition.y)
-      if (this.currentMousePosition.x < 20 && this.currentMousePosition.y < 20) {
-        this.zoom.reverse();
-        this.setState({selected: !this.state.selected});
-      }
-    }
-  }
+ 
 
   render(){
     return (
@@ -142,4 +134,21 @@ class Frame extends React.Component{
   }
 }
 
-export default Frame;
+function mapStateToProps(state){
+  console.log('mapping state to props')
+  return {
+    frames: state.frames
+  };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+      saveFrame: function(paths, x, y){
+        dispatch(receivePaths(paths, x, y));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(Frame);
