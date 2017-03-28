@@ -6,9 +6,6 @@ import {AppContainer} from './AppContainer';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 
-import SingleView from './SingleView.jsx';
-
-
 import {LineupContainer} from '../containers/LineupContainer.jsx';
 
 import Frame from './Frame.jsx';
