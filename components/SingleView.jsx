@@ -97,11 +97,7 @@ drawFrame(context) {
     }
 }
 
-function mapStateToProps(state){
 
-  return {
-  }
-}
 
 function mapDispatchToProps(dispatch){
 
@@ -113,6 +109,5 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(
-  mapStateToProps,
   mapDispatchToProps)(SingleView);
 
