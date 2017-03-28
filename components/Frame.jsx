@@ -1,12 +1,12 @@
 import React from 'react';
-import ComponentOne from './ComponentOne.jsx';
-import DisplayInfo from './DisplayInfo.jsx';
+import {connect} from 'react-redux';
+
+import receiveFrame from '../actions/frames';
 
 class Frame extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      selected: false,
       drawing: false,
       paths: [],
       points: []
@@ -18,9 +18,6 @@ class Frame extends React.Component{
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.drawFrame = this.drawFrame.bind(this);
     this.draw = this.draw.bind(this);
-
-
-    this.scale = 5;
 
     this.currentMousePosition = {
         x: 0,
@@ -35,6 +32,15 @@ class Frame extends React.Component{
 
   componentDidMount() {
     this.drawFrame();
+    this.props.frames.forEach(frame => {
+      for (let i = 0; i < frame.length; i++) {
+        this.draw(frame[i], frame[i + 1]);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
   }
 
   drawFrame() {
@@ -103,7 +109,6 @@ class Frame extends React.Component{
 
   handleMouseMove(e) {
     if (!this.state.drawing ) return;
-    console.log('this.state.paths', this.state.paths)
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
@@ -117,16 +122,6 @@ class Frame extends React.Component{
 
   handleClick(e) {
     e.preventDefault();
-    // if (!this.state.selected) {
-
-    //   this.setState({selected: !this.state.selected});
-    // } else {
-    //   console.log(this.currentMousePosition.x, this.currentMousePosition.y)
-    //   if (this.currentMousePosition.x < 20 && this.currentMousePosition.y < 20) {
-    //     this.zoom.reverse();
-    //     this.setState({selected: !this.state.selected});
-    //   }
-    // }
   }
 
   render(){
@@ -148,4 +143,20 @@ class Frame extends React.Component{
   }
 }
 
-export default Frame;
+function mapStateToProps(state){
+  return {
+    frames: state.frames.frames
+  };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+      saveFrame: function(frame, x, y){
+        dispatch(receiveFrame(frame, x, y));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(Frame);
