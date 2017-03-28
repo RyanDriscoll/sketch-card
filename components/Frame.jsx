@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import receiveFrame from '../actions/frames';
+import {receiveFrame} from '../actions/frames';
 
 class Frame extends React.Component{
   constructor(props){
@@ -32,7 +32,11 @@ class Frame extends React.Component{
 
   componentDidMount() {
     this.drawFrame();
-    this.props.frames.forEach(frame => {
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('in receive props')
+    nextProps.frames[this.props.x][this.props.y].forEach(frame => {
       for (let i = 0; i < frame.length; i++) {
         this.draw(frame[i], frame[i + 1]);
       }
@@ -40,6 +44,7 @@ class Frame extends React.Component{
   }
 
   componentWillUnmount() {
+    console.log('unmounted', this.props, this.state.paths)
     this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
   }
 
@@ -144,6 +149,7 @@ class Frame extends React.Component{
 }
 
 function mapStateToProps(state){
+  console.log('mstp', state)
   return {
     frames: state.frames.frames
   };

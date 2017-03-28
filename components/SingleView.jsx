@@ -21,7 +21,7 @@ export class SingleView extends React.Component {
   }
 
     componentDidMount() {
-
+      console.log('props.params', this.props.params)
     }
 
     handleSubmit(){
@@ -89,10 +89,12 @@ drawFrame(context) {
 
 
     render() {
+      const x = this.props.params.x
+      const y = this.props.params.y
         return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-            <Frame/>
+            <Frame x={x} y={y} />
             <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
         </div>
         );

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import SingleView from './SingleView.jsx'
+import FrameContainer from '../containers/FrameContainer.jsx'
 import {AppContainer} from './AppContainer';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
@@ -34,7 +35,8 @@ ReactDOM.render(
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
                 <Route path ="/componentone" component={ComponentOne} />
-                <Route path ="/singleview" component={SingleView} />
+                <Route path ="/singleview" component={FrameContainer} />
+                <Route path ="/singleview/:x/:y" component={SingleView} />
                 <Route path ="/scorecard" component={scoreCard} />
                 <Route path ="/lineup" component={LineupContainer} />
             </Route>

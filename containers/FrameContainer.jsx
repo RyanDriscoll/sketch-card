@@ -1,6 +1,7 @@
 import React from 'react';
-import Frame from './Frame.jsx';
+import Frame from '../components/Frame.jsx';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 export class FrameContainer extends React.Component {
 
@@ -15,10 +16,10 @@ export class FrameContainer extends React.Component {
   }
 
   render() {
-    const x = this.props.x; //this.props.x
+    const x = 1; //this.props.x
     const frameArray = [];
     for (let y = 1; y <= 9; y++) {
-      frameArray.push(<Frame x={x} y={y} />);
+      frameArray.push(<Link key={y} to={`/singleview/${x}/${y}`}><Frame x={x} y={y} /></Link>);
     }
 
     return (
