@@ -12,7 +12,7 @@ export const receiveTeam = (team) => {
 export const addLineup = (lineupObj) => {
   return {
     type: ADD_LINEUP,
-    lineup
+    lineupObj
   };
 };
 
