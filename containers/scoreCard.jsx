@@ -19,10 +19,11 @@ class scoreCard extends Component {
   }
 
   render(){
+    console.log("PROPS", this.props)
     return (
       <div id="container">
-        <button onClick={this.clickHome} type="button home-button" id="button1" >{"Reds"}</button>
-        <button onClick={this.clickAway} type="button contact-button" id="button2">{"Athletics"}</button>
+        <button onClick={this.clickHome} type="button home-button" id="button1" >{this.props.homeTeam}</button>
+        <button onClick={this.clickAway} type="button contact-button" id="button2">{this.props.awayTeam}</button>
       </div>
 
     )
@@ -34,8 +35,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(scoreCard);
 
 function mapStateToProps(state) {
   return {
-      homeTeam: state.selectedGame,
-      awayTeam: state.selectedGame
+      homeTeam: state.games.selectedGame.homeName,
+      awayTeam: state.games.selectedGame.awayName
   };
 }
 
