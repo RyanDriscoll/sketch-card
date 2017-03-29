@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {addLineup} from '../actions/lineup'
+import store from '../store';
 
 // import Lineup from '../components/Lineup.jsx'
 
@@ -11,7 +12,7 @@ export class LineupContainer extends Component {
     super(props)
       this.state = {
         team: '',
-        roster: [{}, {name: 'heyward'}, {name: 'baez'}, {name: 'bryant'}, {name: 'Rizzo'}],
+        roster: [{}, {name: 'heyward'}, {name: 'baez'}, {name: 'bryant'}, {name: 'Rizzo'}, {name: 'Contreras'}, {name: 'Zobrist'},{name: 'Arrieta'},{name: 'Schwarber'}, {name: 'Almora Jr.'} ],
         lineup: [],
         player1: '',
         player2: '',
@@ -27,6 +28,10 @@ export class LineupContainer extends Component {
       }
       this.onTeamSubmit = this.onTeamSubmit.bind(this)
       this.handleChange = this.handleChange.bind(this)
+
+  }
+
+  componentDidMount(){
 
   }
 
@@ -57,111 +62,39 @@ export class LineupContainer extends Component {
 
   render(){
     let roster = this.state.roster
+    let thisPlayerNum;
+    let lineupArr =[]
+    for(var i = 1; i<=9;i++){
+      thisPlayerNum = "player"+i
+      lineupArr.push(
+      <li key={i+thisPlayerNum}>
+        <select value={this.state[thisPlayerNum]} label="" name={thisPlayerNum} onChange={this.handleChange}>
+          {
+
+            roster && roster.map((playerObj, index) => {
+              return  <option   value={playerObj.name} onChange={this.handleChange} key={playerObj.name + index}>{playerObj.name}</option>
+            })
+          }
+        </select>
+      </li>
+    )
+
+  }
+
 
     return (
       <div>
         <ol>
-
-        <li>
-
-
-        <select value={this.state.player1} label="" name="player1" onChange={this.handleChange}>
           {
-            roster && roster.map((playerObj, index) => {
-              return  <option   value={playerObj.name} onChange={this.handleChange} key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-
-      </li>
-
-          <li>
-        <select value={this.state.player2} name="player2" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-          <li>
-        <select value={this.state.player3} name="player3" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-        <li>
-        <select value={this.state.player4} name="player4" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-          <li>
-        <select value={this.state.player5} name="player5" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-          <li>
-        <select value={this.state.player6} name="player6" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-          <li>
-        <select value={this.state.player7} name="player7" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-          <li>
-        <select value={this.state.player8} name="player8" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-        <li>
-        <select value={this.state.player9} name="player9" onChange={this.handleChange}>
-          {
-            roster && roster.map((playerObj, index) => {
-              return  <option  key={playerObj.name + index}>{playerObj.name}</option>
-            })
-        }
-      </select>
-        </li>
-
-      </ol>
-
-      <button className="btn-btn-primary" onClick={this.onTeamSubmit}>Submit</button>
+            lineupArr
+          }
+        </ol>
+        <button className="btn-btn-primary" onClick={this.onTeamSubmit}>Submit</button>
       </div>
 
     )
   }
+
 }
 
 
