@@ -123,3 +123,7 @@ body {
     margin-left: 10%; }
   .main-nextcard .glyphicon-arrow-right {
     float: left; }
+
+.btn {
+  margin: 2px
+}
