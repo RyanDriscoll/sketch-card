@@ -41,40 +41,46 @@ class Frame extends React.Component{
   }
 
   drawFrame() {
+    const width = this.props.width;
+    const height = this.props.height;
     this.ctx = this.canvas.getContext('2d');
     this.ctx.save();
-    this.ctx.translate(150, 100)
-    this.ctx.rotate(Math.PI/4);
-    this.ctx.lineWidth = 5;
+    this.ctx.translate(width / 2, height / 4);
+    this.ctx.rotate(Math.PI / 4);
+    this.ctx.lineWidth = height / 80;
     this.ctx.strokeStyle = '#e5e5e5';
-    this.ctx.strokeRect(0, 0, 130, 130);
+    this.ctx.strokeRect(0, 0, height / 4, height / 4);
     this.ctx.restore();
 
     for (let col = 0; col < 3; col++) {
       for (let row = 0; row < 2; row++) {
-        let y = row % 2 === 0 ? 345 : 295;
-        let x = col * 50 + 5;
+        let boxStart = height - ((height / 8) + (height / 80));
+        let y = row % 2 === 0 ? boxStart : boxStart - (height / 8); // height - (height / 8 + height / 80)
+        let x = col * (height / 8) + (height / 80);
         if (col === 2 && row === 1 ) {
           break;
         }
         this.ctx.save();
         this.ctx.translate(x, y);
-        this.ctx.lineWidth = 5;
+        this.ctx.lineWidth = height / 80;
         this.ctx.strokeStyle = '#e5e5e5';
-        this.ctx.strokeRect(0, 0, 50, 50);
+        this.ctx.strokeRect(0, 0, height / 8, height / 8);
         this.ctx.restore();
       }
     }
   }
 
   draw(start, end, color = 'black') {
+    const height = this.props.height;
+    const width = this.props.width;
+    const scale = 300 / width;
     this.ctx.beginPath();
     this.ctx.lineJoin = 'round';
     this.ctx.lineCap = 'round';
-    this.ctx.lineWidth = 8;
+    this.ctx.lineWidth = height / 40;
     this.ctx.strokeStyle = color;
-    this.ctx.moveTo(start.x, start.y);
-    this.ctx.lineTo(end.x, end.y);
+    this.ctx.moveTo(start.x / scale, start.y / scale);
+    this.ctx.lineTo(end.x / scale, end.y / scale);
     this.ctx.closePath();
     this.ctx.stroke();
   }
@@ -115,6 +121,8 @@ class Frame extends React.Component{
 
 
   render(){
+    const width = this.props.selected ? '300px' : '150px';
+    const height = this.props.selected ? '400px' : '200px';
     return (
       <div>
         <canvas
@@ -124,8 +132,8 @@ class Frame extends React.Component{
           onMouseUp={this.handleMouseUp}
           onMouseMove={this.handleMouseMove}
           className="frame shadow"
-          width="300px"
-          height="400px"
+          width={width}
+          height={height}
           ref={el => {this.canvas = el;}}
         />
       </div>
