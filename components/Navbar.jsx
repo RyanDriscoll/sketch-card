@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const Navbar = () => {
 
-return (
+  return (
   <nav id="main-navbar">
           <ul>
             <li><Link to="/componentone">Component One</Link></li>
@@ -12,7 +12,7 @@ return (
           </ul>
 
   </nav>
-)
+  );
 };
 
 

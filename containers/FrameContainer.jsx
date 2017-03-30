@@ -8,7 +8,7 @@ export class FrameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -18,7 +18,7 @@ export class FrameContainer extends React.Component {
 
   handleClick(x, y) {
     // e.preventDefault();
-    location.href = `${location.href}/${x}/${y}`
+    location.href = `${location.href}/${x}/${y}`;
   }
 
   render() {
@@ -39,16 +39,16 @@ export class FrameContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
 
   return {
-  }
+  };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 
   return {
-  }
+  };
 }
 
 export default connect(
