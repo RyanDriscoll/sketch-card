@@ -71,6 +71,9 @@ class Frame extends React.Component{
   }
 
   draw(start, end, color = 'black') {
+    const intFrameWidth = window.innerWidth;
+    const screenWidth = window.screen.width;
+    // console.log('screenWidth', screenWidth, intFrameWidth, document.documentElement.clientWidth)
     const height = this.props.height;
     const width = this.props.width;
     const scale = 300 / width;
@@ -89,10 +92,10 @@ class Frame extends React.Component{
     if (this.props.selected) {
       this.setState({
         drawing: true,
-        points: [{x: e.pageX, y: e.pageY}]
+        points: [{x: e.pageX || e.touches[0].pageX, y: e.pageY || e.touches[0].pageY}]
       });
-      this.currentMousePosition.x = e.pageX;
-      this.currentMousePosition.y = e.pageY;
+      this.currentMousePosition.x = e.pageX || e.touches[0].pageX;
+      this.currentMousePosition.y = e.pageY || e.touches[0].pageY;
     }
   }
 
@@ -107,14 +110,15 @@ class Frame extends React.Component{
 
   handleMouseMove(e) {
     if (!this.state.drawing || !this.props.selected) return;
+    // console.log('onMouseMove being called?')
     this.lastMousePosition.x = this.currentMousePosition.x;
     this.lastMousePosition.y = this.currentMousePosition.y;
 
-    this.currentMousePosition.x = e.pageX;
-    this.currentMousePosition.y = e.pageY;
+    this.currentMousePosition.x = e.pageX || e.touches[0].pageX;
+    this.currentMousePosition.y = e.pageY || e.touches[0].pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
     this.setState({
-      points: this.state.points.concat([{x: e.pageX, y: e.pageY}])
+      points: this.state.points.concat([{x: e.pageX || e.touches[0].pageX, y: e.pageY || e.touches[0].pageY}])
     });
   }
 
@@ -129,8 +133,11 @@ class Frame extends React.Component{
           onClick={this.handleClick}
           id={"testcanvas"}
           onMouseDown={this.handleMouseDown}
+          onTouchStart={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
+          onTouchEnd={this.handleMouseUp}
           onMouseMove={this.handleMouseMove}
+          onTouchMove={this.handleMouseMove}
           className="frame shadow"
           width={width}
           height={height}
@@ -142,7 +149,7 @@ class Frame extends React.Component{
 }
 
 function mapStateToProps(state){
-  console.log('mapping state to props')
+  // console.log('mapping state to props')
   return {
     frames: state.frames
   };
