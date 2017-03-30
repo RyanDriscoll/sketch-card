@@ -85,7 +85,7 @@ drawFrame(context) {
 
 
     render() {
-      
+
       const x = this.props.params.x
       const y = this.props.params.y
         return (
@@ -111,4 +111,3 @@ function mapDispatchToProps(dispatch){
 
 export default connect(
   mapDispatchToProps)(SingleView);
-
