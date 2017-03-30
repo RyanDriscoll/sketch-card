@@ -14,6 +14,7 @@ import scoreCard from '../containers/scoreCard.jsx';
 import {Provider} from 'react-redux';
 import store from '../store';
 
+
 function onHomeEnter() {
     store.dispatch(getGames());
 }

@@ -27,13 +27,6 @@ export const getTeam = (teamId) => {
   };
 };
 
-export const createLineup = (playerObj) => {
-  return {
-    type: ADD_LINEUP,
-    player: playerObj
-  };
-};
-
 
 // export const addUserPermission = (board) => {
 //   return dispatch => {

@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 
 import {receivePaths} from '../actions/frames';
 
-class Frame extends React.Component{
-  constructor(props){
+class Frame extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       drawing: false,
-      paths: [],
-      points: []
+      paths  : [],
+      points : []
     };
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -36,15 +36,15 @@ class Frame extends React.Component{
 
   componentWillUnmount() {
     if (this.props.selected) {
-      this.props.saveFrame(this.state.paths, this.props.x, this.props.y)
+      this.props.saveFrame(this.state.paths, this.props.x, this.props.y);
     }
   }
 
   drawFrame() {
     this.ctx = this.canvas.getContext('2d');
     this.ctx.save();
-    this.ctx.translate(150, 100)
-    this.ctx.rotate(Math.PI/4);
+    this.ctx.translate(150, 100);
+    this.ctx.rotate(Math.PI / 4);
     this.ctx.lineWidth = 5;
     this.ctx.strokeStyle = '#e5e5e5';
     this.ctx.strokeRect(0, 0, 130, 130);
@@ -52,9 +52,9 @@ class Frame extends React.Component{
 
     for (let col = 0; col < 3; col++) {
       for (let row = 0; row < 2; row++) {
-        let y = row % 2 === 0 ? 345 : 295;
-        let x = col * 50 + 5;
-        if (col === 2 && row === 1 ) {
+        const y = row % 2 === 0 ? 345 : 295;
+        const x = col * 50 + 5;
+        if (col === 2 && row === 1) {
           break;
         }
         this.ctx.save();
@@ -83,7 +83,7 @@ class Frame extends React.Component{
     if (this.props.selected) {
       this.setState({
         drawing: true,
-        points: [{x: e.pageX, y: e.pageY}]
+        points : [ {x: e.pageX, y: e.pageY} ]
       });
       this.currentMousePosition.x = e.pageX;
       this.currentMousePosition.y = e.pageY;
@@ -94,7 +94,7 @@ class Frame extends React.Component{
     if (this.props.selected) {
       this.setState({
         drawing: false,
-        paths: [...this.state.paths, this.state.points]
+        paths  : [ ...this.state.paths, this.state.points ]
       });
     }
   }
@@ -108,42 +108,41 @@ class Frame extends React.Component{
     this.currentMousePosition.y = e.pageY;
     this.draw(this.lastMousePosition, this.currentMousePosition);
     this.setState({
-      points: this.state.points.concat([{x: e.pageX, y: e.pageY}])
+      points: this.state.points.concat([ {x: e.pageX, y: e.pageY} ])
     });
   }
 
 
-
-  render(){
+  render() {
     return (
       <div>
         <canvas
           onClick={this.handleClick}
-          id={"testcanvas"}
+          id={'testcanvas'}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           onMouseMove={this.handleMouseMove}
           className="frame shadow"
           width="300px"
           height="400px"
-          ref={el => {this.canvas = el;}}
+          ref={el => { this.canvas = el; }}
         />
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps(state){
-  console.log('mapping state to props')
+function mapStateToProps(state) {
+  console.log('mapping state to props');
   return {
     frames: state.frames
   };
 }
 
-function mapDispatchToProps(dispatch){
-    return {
-      saveFrame: function(paths, x, y){
-        dispatch(receivePaths(paths, x, y));
+function mapDispatchToProps(dispatch) {
+  return {
+    saveFrame: function(paths, x, y) {
+      dispatch(receivePaths(paths, x, y));
     }
   };
 }
