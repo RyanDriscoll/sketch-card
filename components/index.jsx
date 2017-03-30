@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-import SingleView from './SingleView.jsx'
-import FrameContainer from '../containers/FrameContainer.jsx'
-import {AppContainer} from './AppContainer';
+import SingleView from './SingleView.jsx';
+import FrameContainer from '../containers/FrameContainer.jsx';
+import {AppContainer} from './AppContainer.jsx';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 import {LineupContainer} from '../containers/LineupContainer.jsx';
@@ -14,13 +14,14 @@ import scoreCard from '../containers/scoreCard.jsx';
 import {Provider} from 'react-redux';
 import store from '../store';
 
+
 function onHomeEnter() {
-    store.dispatch(getGames());
+  store.dispatch(getGames());
 }
 
 function onScoreCardEnter(nextState) {
-    const inning = nextState.params.inning;
-    store.dispatch(getFrames(inning));
+  const inning = nextState.params.inning;
+  store.dispatch(getFrames(inning));
 }
 
 ReactDOM.render(

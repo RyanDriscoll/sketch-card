@@ -7,51 +7,51 @@ import saveDrawing from '../actions/drawings.jsx';
 
 export class SingleView extends React.Component {
 
-    constructor(props){
-    super(props)
-      this.state = {
-        batter: 1,
-        inning: 1,
-        drawingdata: null
-      }
-     this.addBatter = this.addBatter.bind(this);
-     this.subtractBatter = this.subtractBatter.bind(this);
-     this.handleSubmit = this.handleSubmit.bind(this);
-     this.drawFrame = this.drawFrame.bind(this)
+  constructor(props) {
+    super(props);
+    this.state = {
+      batter     : 1,
+      inning     : 1,
+      drawingdata: null
+    };
+    this.addBatter = this.addBatter.bind(this);
+    this.subtractBatter = this.subtractBatter.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.drawFrame = this.drawFrame.bind(this);
   }
 
 
-    handleSubmit(){
-        let canvas = document.getElementById('testcanvas');
-        let dataURL = canvas.toDataURL();
-        let context = canvas.getContext("2d");
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        this.drawFrame(context)
+  handleSubmit() {
+    const canvas = document.getElementById('testcanvas');
+    const dataURL = canvas.toDataURL();
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    this.drawFrame(context);
 
-    }
+  }
 
-    addBatter(e){
-        let value = this.state.batter;
-        value++;
-        this.setState({
-        batter: value,
-    })
-     this.handleSubmit();
-    }
+  addBatter(e) {
+    let value = this.state.batter;
+    value++;
+    this.setState({
+      batter: value,
+    });
+    this.handleSubmit();
+  }
 
-    subtractBatter(e){
-        let value = this.state.batter;
-        value--;
-        this.setState({
-        batter: value,
-    })
-     this.handleSubmit();
-    }
+  subtractBatter(e) {
+    let value = this.state.batter;
+    value--;
+    this.setState({
+      batter: value,
+    });
+    this.handleSubmit();
+  }
 
-drawFrame(context) {
+  drawFrame(context) {
     context.save();
-    context.translate(150, 100)
-    context.rotate(Math.PI/4);
+    context.translate(150, 100);
+    context.rotate(Math.PI / 4);
     context.lineWidth = 5;
     context.strokeStyle = '#e5e5e5';
     context.strokeRect(0, 0, 130, 130);
@@ -68,9 +68,9 @@ drawFrame(context) {
 
     for (let col = 0; col < 3; col++) {
       for (let row = 0; row < 2; row++) {
-        let y = row % 2 === 0 ? 345 : 295;
-        let x = col * 50 + 5;
-        if (col === 2 && row === 1 ) {
+        const y = row % 2 === 0 ? 345 : 295;
+        const x = col * 50 + 5;
+        if (col === 2 && row === 1) {
           break;
         }
         context.save();
@@ -84,31 +84,29 @@ drawFrame(context) {
   }
 
 
-    render() {
-      
-      const x = this.props.params.x
-      const y = this.props.params.y
-        return (
+  render() {
+
+    const x = this.props.params.x;
+    const y = this.props.params.y;
+    return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
             <Frame height={400} width={300} x={x} y={y} selected={true}/>
             <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
         </div>
-        );
-    }
+    );
+  }
 }
 
 
+function mapDispatchToProps(dispatch) {
 
-function mapDispatchToProps(dispatch){
-
-      return {
-        addDrawing: function(drawing){
-          dispatch(saveDrawing(drawing));
-      }
-  }
+  return {
+    addDrawing: function(drawing) {
+      dispatch(saveDrawing(drawing));
+    }
+  };
 }
 
 export default connect(
   mapDispatchToProps)(SingleView);
-

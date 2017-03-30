@@ -1,15 +1,16 @@
-const ADD_LINEUP = 'ADD_LINUP';
+const ADD_LINEUP = 'ADD_LINEUP';
 const RECEIVE_TEAM = 'RECEIVE_TEAM'
 
 const initialState = {
-  lineup: [],
+  lineup: {},
   team: []
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_LINEUP:
-       return Object.assign({}, state, { lineup: action.lineup});
+      console.log('DHESDFLHKSDFLKJ')
+       return Object.assign({}, state, { lineup: action.lineupObj});
     case RECEIVE_TEAM:
       return Object.assign({}, state, { team: action.team});
 

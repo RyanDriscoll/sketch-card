@@ -11,7 +11,7 @@ export const receiveGames = (games) => {
 
 export const selectGame = (gameObj) => {
   return {
-    type: SELECT_GAME,
+    type        : SELECT_GAME,
     selectedGame: gameObj
   };
 };

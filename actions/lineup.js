@@ -12,7 +12,7 @@ export const receiveTeam = (team) => {
 export const addLineup = (lineupObj) => {
   return {
     type: ADD_LINEUP,
-    lineup
+    lineupObj
   };
 };
 
@@ -24,13 +24,6 @@ export const getTeam = (teamId) => {
       .then((team) => {
         dispatch(receiveTeam(team));
       });
-  };
-};
-
-export const createLineup = (playerObj) => {
-  return {
-    type: ADD_LINEUP,
-    player: playerObj
   };
 };
 
