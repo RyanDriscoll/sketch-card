@@ -25,17 +25,17 @@ function onScoreCardEnter(nextState) {
 }
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/" component={AppContainer}>
-                <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
-                <Route path ="/componentone" component={ComponentOne} />
-                <Route path ="/singleview" component={FrameContainer} />
-                <Route path ="/singleview/:x/:y" component={SingleView} />
-                <Route path ="/scorecard" component={scoreCard} />
-                <Route path ="/lineup" component={LineupContainer} />
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={AppContainer}>
+        <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
+        <Route path ="/componentone" component={ComponentOne} />
+        <Route path ="/singleview" component={FrameContainer} />
+        <Route path ="/singleview/:x/:y" component={SingleView} />
+        <Route path ="/scorecard" component={scoreCard} />
+        <Route path ="/lineup" component={LineupContainer} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('app')
 );
