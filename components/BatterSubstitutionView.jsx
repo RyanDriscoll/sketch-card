@@ -19,7 +19,6 @@ export class SingleBatterView extends React.Component {
     <div>
         <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
 
-        <BottomNavBar addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
     </div>
     );
   }

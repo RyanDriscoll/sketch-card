@@ -12,15 +12,16 @@ class BottomNavBar extends Component {
 
 
   render() {
-
+    console.log('PROPS IN BOTTOM NAVBAR', this.props);
     return (
-          <div>
-              <p>
-                  <button type="button" className="btn btn-primary btn-sm"><span className="glyphicon glyphicon-arrow-left" value={'subtract'}></span></button>
-                   <button type="button" className="btn btn-primary btn-sm"><span className="glyphicon glyphicon-menu-up"></span></button>
-                   <button type="button" className="btn btn-primary btn-sm"><span className="glyphicon glyphicon-arrow-right" value={'add'}></span></button>
-              </p>
-          </div>
+          <nav className="bottom-navbar">
+                  <div className="arrow-left" onClick={() => (console.log('LEFT ARROW'))}/>
+
+
+                  <div id="home_plate" onClick={() => (console.log('home plate'))}/>
+
+                   <div className="arrow-right" onClick={() => (console.log('RIGHT ARROW'))} />
+          </nav>
     );
   }
 }

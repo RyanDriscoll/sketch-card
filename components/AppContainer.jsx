@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar.jsx';
-import BottomNavBar from './BottomNavBar.jsx';
 
 const AppContainer = (props) => {
 
@@ -13,7 +12,7 @@ const AppContainer = (props) => {
           { props.children && React.cloneElement(props.children, props)}
         </div>
         <div>
-        <BottomNavBar/>
+
         </div>
       </div>
   );
