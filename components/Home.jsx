@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import { selectGame } from '../actions/games';
+import { getRosters } from '../actions/players';
 import store from '../store.js';
 
 
@@ -11,8 +12,8 @@ class Home extends React.Component {
   }
 
   handleClick(game) {
-    console.log(game);
     store.dispatch(selectGame(game));
+    store.dispatch(getRosters(game));
   }
 
   render() {
