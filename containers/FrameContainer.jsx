@@ -9,25 +9,14 @@ export class FrameContainer extends React.Component {
     super(props);
     this.state = {
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidMount() {
-
-  }
-
-  handleClick(x, y) {
-    // e.preventDefault();
-    location.href = `${location.href}/${x}/${y}`;
   }
 
   render() {
     const x = 1; //this.props.x
     const frameArray = [];
     for (let y = 1; y <= 9; y++) {
-      frameArray.push(<div key={y} onClick={() => this.handleClick(x, y)}><Frame x={x} y={y} selected={false} /></div>);
+      frameArray.push(<Link to={`singleview/${x}/${y}`} key={y} ><Frame height={200} width={150} x={x} y={y} selected={false} /></Link >);
     }
-      // frameArray.push(<Link key={y} to={`/singleview/${x}/${y}`}><Frame x={x} y={y} /></Link>);
 
     return (
       <div>

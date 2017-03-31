@@ -26,6 +26,7 @@ const initialState = {
 export default function (state = initialState, action) {
   const newState = Object.assign({}, state)
   switch (action.type) {
+    // case ADD_INNING:
     case ADD_PATHS:
       newState[action.x] = Object.assign({}, newState[action.x], {
           [action.y]: newState[action.x][action.y].concat(action.paths)
