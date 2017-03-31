@@ -5,25 +5,31 @@ import LineupContainer from './LineupContainer.jsx';
 import BatterDisplay from '../components/BatterDisplay.jsx'
 
 
+
 class scoreCard extends Component {
-  constructor(props){
-    super(props)
-    this.state = { 
+  constructor(props) {
+    super(props);
+    this.state = {
       home: true
-    }
+    };
     this.clickHome = this.clickHome.bind(this);
     this.clickAway = this.clickAway.bind(this);
   }
 
-  clickHome(){
-    this.setState({home:true})
+
+  clickHome() {
+    console.log('STATEHOME', this.state.home);
+    this.setState({home: true});
   }
 
-  clickAway(){
-    this.setState({home:false})
+  clickAway() {
+    console.log('STATEHOME', this.state.home);
+    this.setState({home: false});
   }
 
-  render(){
+  render() {
+    console.log('PROPS', this.props);
+
     return (
       <div>
         <div id="container">
@@ -32,7 +38,10 @@ class scoreCard extends Component {
         </div>
         <BatterDisplay />
       </div>
-    )
+
+
+    );
+
   }
 }
 
@@ -41,8 +50,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(scoreCard);
 
 function mapStateToProps(state) {
   return {
-      homeTeam: state.games.selectedGame.homeName,
-      awayTeam: state.games.selectedGame.awayName
+    homeTeam: state.games.selectedGame.homeName,
+    awayTeam: state.games.selectedGame.awayName
   };
 }
 
