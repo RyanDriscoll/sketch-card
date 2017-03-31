@@ -63,7 +63,6 @@ const config = {
   headers: { 'Authorization': xmlStatsKey }
 };
 router.get('/team/:teamId', (req, res, next) => {
-  console.log('################', req.params.teamId);
   const apiRoster = `https://erikberg.com/mlb/roster/${req.params.teamId}.json`;
   axios.get(apiRoster, config)
     .then(roster => res.json(roster.data.players))
