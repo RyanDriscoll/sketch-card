@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class nextCard extends Component {
+class BottomNavBar extends Component {
   constructor(props) {
     super(props);
   }
@@ -26,4 +26,4 @@ class nextCard extends Component {
 }
 
 
-export default nextCard;
+export default BottomNavBar;

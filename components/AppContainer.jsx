@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar.jsx';
-import ComponentOne from './ComponentOne.jsx';
+import BottomNavBar from './BottomNavBar.jsx';
 
-class AppContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const AppContainer = (props) => {
 
-  render() {
-    return (
+  console.log('APP CONTAINER PROPS', props);
+  return (
       <div id="app-root">
 
         <div className="container">
 
-          { this.props.children ? this.props.children : null }
+          { props.children && React.cloneElement(props.children, props)}
         </div>
-        <ComponentOne/>
+        <div>
+        <BottomNavBar/>
+        </div>
       </div>
-    );
-  }
-}
+  );
+};
+
 
 export default AppContainer;

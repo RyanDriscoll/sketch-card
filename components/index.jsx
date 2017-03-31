@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import SingleView from './SingleView.jsx';
 import FrameContainer from '../containers/FrameContainer.jsx';
-import {AppContainer} from './AppContainer.jsx';
+import AppContainer from './AppContainer.jsx';
 import HomeContainer from '../containers/HomeContainer.jsx';
-import ComponentOne from './ComponentOne.jsx';
+import BottomNavBar from './BottomNavBar.jsx';
 import {LineupContainer} from '../containers/LineupContainer.jsx';
 import Frame from './Frame.jsx';
 import { getGames } from '../actions/games';
@@ -25,17 +25,16 @@ function onScoreCardEnter(nextState) {
 }
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/" component={AppContainer}>
-                <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
-                <Route path ="/componentone" component={ComponentOne} />
-                <Route path ="/singleview" component={FrameContainer} />
-                <Route path ="/singleview/:x/:y" component={SingleView} />
-                <Route path ="/scorecard" component={scoreCard} />
-                <Route path ="/lineup" component={LineupContainer} />
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
-);
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={AppContainer}>
+        <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
+        <Route path ="/singleview" component={FrameContainer} />
+        <Route path ="/singleview/:x/:y" component={SingleView} />
+        <Route path ="/scorecard" component={scoreCard} />
+        <Route path ="/lineup" component={LineupContainer} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('app')
+  );

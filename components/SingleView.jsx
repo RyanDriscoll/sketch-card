@@ -1,9 +1,9 @@
 import React from 'react';
 import Frame from './Frame.jsx';
 import {connect} from 'react-redux';
-import ComponentOne from './ComponentOne.jsx';
+import BottomNavBar from './BottomNavBar.jsx';
 import DisplayInfo from './DisplayInfo.jsx';
-import saveDrawing from '../actions/drawings.jsx';
+import saveDrawing from '../actions/drawings.js';
 
 export class SingleView extends React.Component {
 
@@ -92,7 +92,6 @@ export class SingleView extends React.Component {
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
             <Frame x={x} y={y} selected={true}/>
-            <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
         </div>
     );
   }

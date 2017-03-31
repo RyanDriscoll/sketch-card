@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import { selectGame } from '../actions/games';
 import store from '../store.js';
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +31,8 @@ class Home extends React.Component {
         })
           }
         </ul>
+        <div>
+          </div>
       </div>
     );
   }
