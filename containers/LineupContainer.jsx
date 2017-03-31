@@ -92,7 +92,7 @@ export class LineupContainer extends Component {
         <div>
         <button className="btn-btn-primary" onClick={this.onTeamSubmit}>Submit</button>
         </div>
-        <BottomNavBar/>
+
       </div>
 
     );
