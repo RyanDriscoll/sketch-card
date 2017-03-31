@@ -19,10 +19,10 @@ function onHomeEnter() {
   store.dispatch(getGames());
 }
 
-function onScoreCardEnter(nextState) {
-  const inning = nextState.params.inning;
-  store.dispatch(getFrames(inning));
-}
+// function onScoreCardEnter(nextState) {
+//   const inning = nextState.params.inning;
+//   store.dispatch(getFrames(inning));
+// }
 
 ReactDOM.render(
   <Provider store={store}>

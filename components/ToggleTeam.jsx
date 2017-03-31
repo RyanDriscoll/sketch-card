@@ -15,13 +15,12 @@ class ToggleTeam extends Component {
 
   clickHome() {
     this.setState({selected: 'home'});
-    console.log('this.props.home', this.props.home);
     this.props.setTeam(this.props.home);
   }
 
   clickAway() {
     this.setState({selected: 'away'});
-    this.props.setTeam(this.props.home);
+    this.props.setTeam(this.props.away);
   }
 
   isActive(value) {
@@ -61,12 +60,12 @@ function mapStateToProps(state) {
     home: {
       name: state.games.selectedGame.homeName,
       id  : state.games.selectedGame.homeId,
-      home: true
+      team: 'home'
     },
     away: {
       name: state.games.selectedGame.awayName,
       id  : state.games.selectedGame.awayId,
-      home: false
+      team: 'away'
     },
     selectedTeam: state.games.selectedTeam
   };

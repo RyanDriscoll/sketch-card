@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
 import ToggleTeam from '../components/ToggleTeam.jsx';
+import BatterContainer from './BatterContainer.jsx';
 
 
 class scoreCard extends Component {
@@ -11,32 +12,17 @@ class scoreCard extends Component {
     this.state = {
       // home: true
     };
-    // this.clickHome = this.clickHome.bind(this);
-    // this.clickAway = this.clickAway.bind(this);
   }
-
-  // clickHome() {
-  //   console.log('STATEHOME', this.state.home);
-  //   this.setState({home: true});
-  // }
-
-  // clickAway() {
-  //   console.log('STATEHOME', this.state.home);
-  //   this.setState({home: false});
-  // }
 
   render() {
     return (
       <div>
         <ToggleTeam />
+        <BatterContainer />
       </div>
     );
   }
 }
-        // {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
-        // {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button2">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button2">{this.props.awayTeam}</button>}
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(scoreCard);
 
 function mapStateToProps(state) {

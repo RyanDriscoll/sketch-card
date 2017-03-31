@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
          newState.selectedTeam = {
            name: action.selectedGame.awayName,
            id: action.selectedGame.awayId,
-           home: false
+           team: 'away'
          }
        }
        break;

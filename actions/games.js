@@ -25,7 +25,6 @@ export const selectTeam = (selectedTeam) => {
 
 export const receiveTeam = (selectedTeam) => {
   return dispatch => {
-    console.log('in receiveTeam', selectedTeam);
     dispatch(selectTeam(selectedTeam));
   };
 };
