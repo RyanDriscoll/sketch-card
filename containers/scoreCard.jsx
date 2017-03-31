@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
+import BatterDisplay from '../components/BatterDisplay.jsx'
+
 
 
 class scoreCard extends Component {
@@ -13,6 +15,7 @@ class scoreCard extends Component {
     this.clickHome = this.clickHome.bind(this);
     this.clickAway = this.clickAway.bind(this);
   }
+
 
   clickHome() {
     console.log('STATEHOME', this.state.home);
@@ -26,13 +29,19 @@ class scoreCard extends Component {
 
   render() {
     console.log('PROPS', this.props);
+
     return (
-      <div id="container">
-        {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
-        {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button2">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button2">{this.props.awayTeam}</button>}
+      <div>
+        <div id="container">
+          {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
+          {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button2">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button2">{this.props.awayTeam}</button>}
+        </div>
+        <BatterDisplay />
       </div>
 
+
     );
+
   }
 }
 
