@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import SingleView from './SingleView.jsx';
 import FrameContainer from '../containers/FrameContainer.jsx';
-import {AppContainer} from './AppContainer.jsx';
+import AppContainer from '../containers/AppContainer.jsx';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import ComponentOne from './ComponentOne.jsx';
 import {LineupContainer} from '../containers/LineupContainer.jsx';

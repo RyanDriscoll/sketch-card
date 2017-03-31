@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {RECEIVE_GAMES, SELECT_GAME} from '../constants';
+import {RECEIVE_GAMES, SELECT_GAME, SELECT_TEAM} from '../constants';
 
 export const receiveGames = (games) => {
   return {
@@ -9,10 +9,24 @@ export const receiveGames = (games) => {
   };
 };
 
-export const selectGame = (gameObj) => {
+export const selectGame = (selectedGame) => {
   return {
-    type        : SELECT_GAME,
-    selectedGame: gameObj
+    type: SELECT_GAME,
+    selectedGame
+  };
+};
+
+export const selectTeam = (selectedTeam) => {
+  return {
+    type: SELECT_TEAM,
+    selectedTeam
+  };
+};
+
+export const receiveTeam = (selectedTeam) => {
+  return dispatch => {
+    console.log('in receiveTeam', selectedTeam);
+    dispatch(selectTeam(selectedTeam));
   };
 };
 
