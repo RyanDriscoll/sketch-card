@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import SingleView from './SingleView.jsx';
 import FrameContainer from '../containers/FrameContainer.jsx';
 import {AppContainer} from './AppContainer.jsx';
@@ -26,7 +26,7 @@ function onScoreCardEnter(nextState) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
         <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
         <Route path ="/componentone" component={ComponentOne} />
