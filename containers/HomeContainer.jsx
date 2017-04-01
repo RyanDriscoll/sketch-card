@@ -13,7 +13,6 @@ class HomeContainer extends Component {
   }
 
   render() {
-    console.log('games', this.props.games);
     return (
         <div>
             <div>
