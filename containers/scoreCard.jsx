@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
 import ToggleTeam from '../components/ToggleTeam.jsx';
 import BatterContainer from './BatterContainer.jsx';
-import BatterDisplay from '../components/BatterDisplay.jsx'
+import BatterDisplay from '../components/BatterDisplay.jsx';
+import FrameContainer from './FrameContainer.jsx';
 
 class scoreCard extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class scoreCard extends Component {
       <div>
         <ToggleTeam />
         <BatterContainer />
+        <FrameContainer />
       </div>
     );
   }
