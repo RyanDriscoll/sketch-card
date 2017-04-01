@@ -6,25 +6,21 @@ import {receiveTeam} from '../actions/games';
 class ToggleTeam extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: 'away'
-    };
+
     this.clickHome = this.clickHome.bind(this);
     this.clickAway = this.clickAway.bind(this);
   }
 
   clickHome() {
-    this.setState({selected: 'home'});
     this.props.setTeam(this.props.home);
   }
 
   clickAway() {
-    this.setState({selected: 'away'});
     this.props.setTeam(this.props.away);
   }
 
   isActive(value) {
-    return `btn ${value === this.state.selected ? 'btn-success' : 'btn-default'}`;
+    return `btn ${value === this.props.selectedTeam.team ? 'btn-success' : 'btn-default'}`;
   }
 
   render() {
@@ -45,13 +41,6 @@ class ToggleTeam extends Component {
     );
   }
 }
-        // {this.state.home ?
-        // <button onClick={this.clickAway} className="btn btn-default" id="button2">{this.props.awayTeam}</button>
-        // :
-        // <button onClick={this.clickAway} className="btn btn-success" id="button2">{this.props.awayTeam}</button>}
-
-        // {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToggleTeam);
 

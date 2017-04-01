@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
 import FrameContainer from './FrameContainer.jsx';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import BottomNavBar from '../components/BottomNavBar.jsx';
 import ToggleTeam from '../components/ToggleTeam.jsx';
 import BatterContainer from './BatterContainer.jsx';
@@ -33,7 +33,7 @@ class scoreCard extends Component {
   }
 
   addBatter() {
-    hashHistory.push('/lineup');
+    browserHistory.push('/lineup');
   }
 
 
