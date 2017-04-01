@@ -1,4 +1,5 @@
 'use strict';
+
 const express = require('express');
 const path = require('path');
 const router = require('./server/router/game_data').router;
@@ -14,9 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', router);
 
+
 //Here is where I serve up the first page
-app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, './components/index.html'));
+app.get('*', function(req, res, next) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.use(function(err, req, res, next) {

@@ -2,16 +2,19 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
-import BatterDisplay from '../components/BatterDisplay.jsx';
 import FrameContainer from './FrameContainer.jsx';
 import { hashHistory } from 'react-router';
-
+import BottomNavBar from '../components/BottomNavBar.jsx';
+import ToggleTeam from '../components/ToggleTeam.jsx';
+import BatterContainer from './BatterContainer.jsx';
+import BatterDisplay from '../components/BatterDisplay.jsx';
 
 
 class scoreCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       home: true,
       selectedteam: null
     };
@@ -27,6 +30,7 @@ class scoreCard extends Component {
 
   clickAway() {
     this.setState({home: false, selectedteam: this.props.awayTeam});
+
   }
 
   addBatter(){
@@ -35,6 +39,7 @@ class scoreCard extends Component {
 
 
   render() {
+
 
     return (
       <div>
@@ -49,18 +54,19 @@ class scoreCard extends Component {
       </div>
 
 
-    );
+        <ToggleTeam />
+        <BatterContainer />
+      </div>
 
+    );
   }
 }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(scoreCard);
 
 function mapStateToProps(state) {
   return {
-    homeTeam: state.games.selectedGame.homeName,
-    awayTeam: state.games.selectedGame.awayName
+    // homeTeam: state.games.selectedGame.homeName,
+    // awayTeam: state.games.selectedGame.awayName
   };
 }
 

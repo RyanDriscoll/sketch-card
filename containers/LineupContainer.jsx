@@ -3,7 +3,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {addLineup} from '../actions/lineup';
 import store from '../store';
-
+import BottomNavBar from '../components/BottomNavBar.jsx';
+import Navbar from '../components/Navbar.jsx';
 // import Lineup from '../components/Lineup.jsx'
 
 
@@ -84,12 +85,20 @@ export class LineupContainer extends Component {
 
     return (
       <div>
+        <div>
+          <Navbar/>
+        </div>
         <ol>
           {
             lineupArr
           }
         </ol>
+        <div>
         <button className="btn-btn-primary" onClick={this.onTeamSubmit}>Submit</button>
+        </div>
+        <div>
+        <BottomNavBar/>
+        </div>
       </div>
 
     );

@@ -23,7 +23,8 @@ export const getTeam = (teamId) => {
       .then((res) => res.data)
       .then((team) => {
         dispatch(receiveTeam(team));
-      });
+      })
+      .then(err=>(console.log(err)));
   };
 };
 
