@@ -1,4 +1,5 @@
 'use strict';
+
 const express = require('express');
 const path = require('path');
 const router = require('./server/router/game_data').router;
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', router);
+
 
 //Here is where I serve up the first page
 app.get('*', function(req, res, next) {

@@ -35,6 +35,7 @@ export const getGames = () => {
       .then((res) => res.data)
       .then((games) => {
         dispatch(receiveGames(games));
-      });
+      })
+      .then(err=>(console.log(err)));
   };
 };

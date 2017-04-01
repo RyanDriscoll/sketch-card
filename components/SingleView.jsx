@@ -1,8 +1,9 @@
 import React from 'react';
 import Frame from './Frame.jsx';
 import {connect} from 'react-redux';
-import ComponentOne from './ComponentOne.jsx';
+import BottomNavBar from './BottomNavBar.jsx';
 import DisplayInfo from './DisplayInfo.jsx';
+
 
 export class SingleView extends React.Component {
 
@@ -101,9 +102,8 @@ export class SingleView extends React.Component {
 function mapDispatchToProps(dispatch) {
 
   return {
-    addDrawing: function(drawing) {
-      dispatch(saveDrawing(drawing));
-    }
+
+
   };
 }
 
