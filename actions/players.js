@@ -32,6 +32,7 @@ export const getRosters = (game) => {
     return axios.all([ axios.get(`/api/team/${homeId}`), axios.get(`/api/team/${awayId}`) ])
       .then(axios.spread(function(home, away) {
         dispatch(selectRosters(home.data, away.data));
-      }));
+      }))
+      .then(err=>(console.log(err)));
   };
 };
