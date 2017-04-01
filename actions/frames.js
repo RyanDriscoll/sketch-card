@@ -10,13 +10,17 @@ export const setPaths = (paths, x, y) => {
 };
 
 export const nextFrame = (newFrame) => {
-  type:NEXT_FRAME,
-  newFrame;
+  return {
+    type: NEXT_FRAME,
+    newFrame
+  };
 };
 
 export const previousFrame = (prevFrame) => {
-  type:PREVIOUS_FRAME,
-  prevFrame;
+  return {
+    type: PREVIOUS_FRAME,
+    prevFrame
+  };
 };
 
 export const receivePaths = (paths, x, y) => {
