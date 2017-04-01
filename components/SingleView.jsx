@@ -102,9 +102,8 @@ export class SingleView extends React.Component {
 function mapDispatchToProps(dispatch) {
 
   return {
-    addDrawing: function(drawing) {
-      dispatch(saveDrawing(drawing));
-    }
+
+
   };
 }
 
