@@ -15,7 +15,7 @@ class scoreCard extends Component {
     super(props);
     this.state = {
 
-      home: true,
+      home        : true,
       selectedteam: null
     };
     this.clickHome = this.clickHome.bind(this);
@@ -33,8 +33,8 @@ class scoreCard extends Component {
 
   }
 
-  addBatter(){
-    hashHistory.push(`/lineup`)
+  addBatter() {
+    hashHistory.push('/lineup');
   }
 
 
@@ -43,6 +43,7 @@ class scoreCard extends Component {
 
     return (
       <div>
+        <div>
         <div id="container">
           {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
           {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button1">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button1">{this.props.awayTeam}</button>}
@@ -53,10 +54,11 @@ class scoreCard extends Component {
           <FrameContainer />
       </div>
 
-
+      <div>
         <ToggleTeam />
         <BatterContainer />
       </div>
+    </div>
 
     );
   }
