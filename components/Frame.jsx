@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import {receivePaths} from '../actions/frames';
 
 class Frame extends React.Component {

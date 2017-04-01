@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DisplayInfo from './DisplayInfo';
+import BottomNavBar from './BottomNavBar.jsx';
 
 export class SingleBatterView extends React.Component {
 
@@ -14,12 +15,10 @@ export class SingleBatterView extends React.Component {
 
   render() {
 
-
     return (
     <div>
         <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
 
-        <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
     </div>
     );
   }
