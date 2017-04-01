@@ -12,16 +12,18 @@ class BatterContainer extends Component {
   }
 
   render() {
-    const team = this.props.players[this.props.selectedTeam.team];
     const lineup = [];
-    for (let i = 1; i <= 9; i++) {
-      let names;
-      if (team[i].length) {
-        names = team[i].map((player, idx) => <div key={idx} >{player.name}</div>);
-      } else {
-        names = <div></div>;
+    if (this.props.selectedTeam.team) {
+      const team = this.props.players[this.props.selectedTeam.team];
+      for (let i = 1; i <= 9; i++) {
+        let names;
+        if (team[i].length) {
+          names = team[i].map((player, idx) => <div key={idx} >{player.name}</div>);
+        } else {
+          names = <div ></div>;
+        }
+        lineup.push(<div style={{'height': '200px', 'width': '50%', 'border': '3px solid black'}} key={i} order={i}>{names}</div>);
       }
-      lineup.push(<div key={i} order={i}>{names}</div>);
     }
     return (
       <div>

@@ -1,4 +1,5 @@
 import { ADD_PLAYER, ADD_ROSTERS } from '../constants';
+import { REHYDRATE } from 'redux-persist/constants';
 
 const initialState = {
   home: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
@@ -18,9 +19,12 @@ export default function (state = initialState, action) {
       break;
 
     case ADD_ROSTERS:
-      newState.rosters.home = newState.rosters.home.concat(action.home)
-      newState.rosters.away = newState.rosters.away.concat(action.away)
+      newState.rosters.home = action.home;
+      newState.rosters.away = action.away;
       break;
+
+    case REHYDRATE:
+      return action.payload.players;
 
     default:
       return state;

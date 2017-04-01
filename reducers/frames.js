@@ -1,4 +1,5 @@
 import {ADD_PATHS } from '../constants';
+import { REHYDRATE } from 'redux-persist/constants';
 
 const initialState = {
     1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
@@ -32,6 +33,9 @@ export default function (state = initialState, action) {
           [action.y]: newState[action.x][action.y].concat(action.paths)
         });
       break;
+
+    case REHYDRATE:
+      return action.payload.frames;
 
     default:
       return state;
