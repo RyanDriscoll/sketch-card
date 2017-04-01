@@ -6,13 +6,11 @@
 }
 
 #button1{
-    width: 300px;
-    height: 40px;
+    width: 175px;
+    height: 45px;
+    margin: 2%
 }
-#button2{
-    width: 300px;
-    height: 40px;
-}
+
 #container{
     text-align: center;
 }
@@ -126,4 +124,24 @@ body {
     .glyphicon-arrow-right {
       float: left
     }
+}
+
+table {
+  border-color: grey
+}
+
+tr {
+  height : 200px
+}
+
+td:hover {
+  background-color: lightgrey;
+}
+
+#batter {
+  margin: 1%;
+  width: 30%;
+  border-color: grey;
+  float: left;
+   border-style: solid
 }

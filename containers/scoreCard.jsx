@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
-import BatterDisplay from '../components/BatterDisplay.jsx'
+import BatterDisplay from '../components/BatterDisplay.jsx';
+import FrameContainer from './FrameContainer.jsx';
+import { hashHistory } from 'react-router';
 
 
 
@@ -10,33 +12,40 @@ class scoreCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      home: true
+      home: true,
+      selectedteam: null
     };
     this.clickHome = this.clickHome.bind(this);
     this.clickAway = this.clickAway.bind(this);
+    this.addBatter = this.addBatter.bind(this);
   }
 
 
   clickHome() {
-    console.log('STATEHOME', this.state.home);
-    this.setState({home: true});
+    this.setState({home: true, selectedteam: this.props.homeTeam});
   }
 
   clickAway() {
-    console.log('STATEHOME', this.state.home);
-    this.setState({home: false});
+    this.setState({home: false, selectedteam: this.props.awayTeam});
   }
 
+  addBatter(){
+    hashHistory.push(`/lineup`)
+  }
+
+
   render() {
-    console.log('PROPS', this.props);
 
     return (
       <div>
         <div id="container">
           {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
-          {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button2">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button2">{this.props.awayTeam}</button>}
+          {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button1">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button1">{this.props.awayTeam}</button>}
         </div>
-        <BatterDisplay />
+        <div id="batter">
+          <BatterDisplay addBatter={this.addBatter} team={this.selectedteam}/>
+        </div>
+          <FrameContainer />
       </div>
 
 
