@@ -2,13 +2,10 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LineupContainer from './LineupContainer.jsx';
-<<<<<<< HEAD
 import BottomNavBar from '../components/BottomNavBar.jsx';
-=======
 import ToggleTeam from '../components/ToggleTeam.jsx';
 import BatterContainer from './BatterContainer.jsx';
-import BatterDisplay from '../components/BatterDisplay.jsx'
->>>>>>> master
+import BatterDisplay from '../components/BatterDisplay.jsx';
 
 class scoreCard extends Component {
   constructor(props) {

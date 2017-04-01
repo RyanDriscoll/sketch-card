@@ -91,12 +91,8 @@ export class SingleView extends React.Component {
     return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-<<<<<<< HEAD
-            <Frame x={x} y={y} selected={true}/>
-=======
             <Frame height={400} width={300} x={x} y={y} selected={true}/>
             <ComponentOne addBatter={this.addBatter} subtractBatter={this.subtractBatter}/>
->>>>>>> master
         </div>
     );
   }
