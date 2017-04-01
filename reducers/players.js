@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_ROSTERS } from '../constants';
+import { ADD_PLAYER, ADD_ROSTERS, SELECT_GAME } from '../constants';
 import { REHYDRATE } from 'redux-persist/constants';
 
 const initialState = {
@@ -22,6 +22,9 @@ export default function (state = initialState, action) {
       newState.rosters.home = action.home;
       newState.rosters.away = action.away;
       break;
+
+    case SELECT_GAME:
+      return initialState;
 
     case REHYDRATE:
       return action.payload.players;

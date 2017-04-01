@@ -33,6 +33,18 @@ class Frame extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const oldPaths = this.props.frames[this.props.x][this.props.y];
+    const newPaths = nextProps.frames[nextProps.x][nextProps.y];
+    if (oldPaths.length !== newPaths.length) {
+      newPaths.forEach(path => {
+        for (let i = 0; i < path.length - 1; i++) {
+          this.draw(path[i], path[i + 1]);
+        }
+      });
+    }
+  }
+
   componentWillUnmount() {
     if (this.props.selected) {
       this.props.saveFrame(this.state.paths, this.props.x, this.props.y);
