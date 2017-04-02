@@ -10,7 +10,7 @@ class Frame extends React.Component {
       paths  : [],
       points : []
     };
-
+    console.log('PROPS!!!!!!!!!!!!!!!!!!!!!!!',props)
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -24,8 +24,8 @@ class Frame extends React.Component {
 
   componentDidMount() {
     this.drawFrame();
-    if (this.props.frames[this.props.x][this.props.y]) {
-      this.props.frames[this.props.x][this.props.y].forEach(path => {
+    if (this.props.frames[this.props.homeOrAway][this.props.x][this.props.y]) {
+      this.props.frames[this.props.homeOrAway][this.props.x][this.props.y].forEach(path => {
         for (let i = 0; i < path.length - 1; i++) {
           this.draw(path[i], path[i + 1]);
         }
@@ -34,8 +34,8 @@ class Frame extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const oldPaths = this.props.frames[this.props.x][this.props.y];
-    const newPaths = nextProps.frames[nextProps.x][nextProps.y];
+    const oldPaths = this.props.frames[this.props.homeOrAway][this.props.x][this.props.y];
+    const newPaths = nextProps.frames[this.nextProps.homeOrAway][nextProps.x][nextProps.y];
     if (oldPaths.length !== newPaths.length) {
       newPaths.forEach(path => {
         for (let i = 0; i < path.length - 1; i++) {
@@ -46,8 +46,9 @@ class Frame extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log('GIVE ME SOMETHING PLEASE!)!)!)!)!!)!)!)!)!)!)!)!)!)!)!)!')
     if (this.props.selected) {
-      this.props.saveFrame(this.state.paths, this.props.x, this.props.y);
+      this.props.saveFrame(this.props.homeOrAway, this.state.paths, this.props.x, this.props.y);
     }
   }
 
@@ -159,16 +160,17 @@ class Frame extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('mapping state to props')
+  console.log('mapping state to props', state)
   return {
-    frames: state.frames
+    frames: state.frames, 
+    homeOrAway: state.game.selectedTeam.team
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveFrame: function(paths, x, y) {
-      dispatch(receivePaths(paths, x, y));
+    saveFrame: function(team, paths, x, y) {
+      dispatch(receivePaths(team, paths, x, y));
     }
   };
 }

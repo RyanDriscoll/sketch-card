@@ -48,6 +48,7 @@ class scoreCard extends Component {
       // </div>
 
   render() {
+    {console.log('!@!@!@!@!@!@!@!@!@!@')}
     return (
       <div>
         <ToggleTeam />

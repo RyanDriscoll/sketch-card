@@ -1,8 +1,19 @@
-import {ADD_PATHS, NEXT_FRAME, PREVIOUS_FRAME} from '../constants';
+import {ADD_PATHS_HOME, ADD_PATHS_AWAY, NEXT_FRAME, PREVIOUS_FRAME} from '../constants';
 
-export const setPaths = (paths, x, y) => {
+//Home Team
+export const setPathsHome = (paths, x, y) => {
   return {
-    type: ADD_PATHS,
+    type: ADD_PATHS_HOME,
+    paths,
+    x,
+    y
+  };
+};
+
+//Away Team
+export const setPathsAway = (paths, x, y) => {
+  return {
+    type: ADD_PATHS_AWAY,
     paths,
     x,
     y
@@ -23,8 +34,15 @@ export const previousFrame = (prevFrame) => {
   };
 };
 
-export const receivePaths = (paths, x, y) => {
-  return dispatch => {
-    dispatch(setPaths(paths, x, y));
-  };
+export const receivePaths = (team, paths, x, y) => {
+  if (team === home){
+      return dispatch => {
+      dispatch(setPathsAwayHome(paths, x, y));
+    };
+  }
+    else {
+    return dispatch => {
+      dispatch(setPathsAway(paths, x, y));
+    };
+  }
 };

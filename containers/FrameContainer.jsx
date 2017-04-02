@@ -17,7 +17,6 @@ export class FrameContainer extends React.Component {
     for (let y = 1; y <= 9; y++) {
       frameArray.push(<Link to={`singleview/${x}/${y}`} key={y} ><Frame height={200} width={150} x={x} y={y} selected={false} /></Link >);
     }
-
     return (
       <div>
         {

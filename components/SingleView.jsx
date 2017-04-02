@@ -14,6 +14,7 @@ export class SingleView extends React.Component {
       inning     : 1,
       drawingdata: null
     };
+     console.log('THIS IS STATE WITHIN THE SINGLE VIEW',state)
     this.addBatter = this.addBatter.bind(this);
     this.subtractBatter = this.subtractBatter.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,7 +86,6 @@ export class SingleView extends React.Component {
 
 
   render() {
-
     const x = this.props.params.x;
     const y = this.props.params.y;
     return (
@@ -98,6 +98,12 @@ export class SingleView extends React.Component {
 }
 
 
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
 function mapDispatchToProps(dispatch) {
 
   return {
@@ -106,5 +112,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapDispatchToProps)(SingleView);
+export default connect(mapDispatchToProps)(SingleView);
