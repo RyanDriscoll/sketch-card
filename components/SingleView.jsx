@@ -14,7 +14,6 @@ export class SingleView extends React.Component {
       inning     : 1,
       drawingdata: null
     };
-     console.log('THIS IS STATE WITHIN THE SINGLE VIEW',state)
     this.addBatter = this.addBatter.bind(this);
     this.subtractBatter = this.subtractBatter.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

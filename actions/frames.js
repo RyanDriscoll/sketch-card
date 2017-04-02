@@ -35,9 +35,9 @@ export const previousFrame = (prevFrame) => {
 };
 
 export const receivePaths = (team, paths, x, y) => {
-  if (team === home){
+  if (team === 'home'){
       return dispatch => {
-      dispatch(setPathsAwayHome(paths, x, y));
+      dispatch(setPathsHome(paths, x, y));
     };
   }
     else {

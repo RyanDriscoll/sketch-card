@@ -48,7 +48,7 @@ class Frame extends React.Component {
   componentWillUnmount() {
     console.log('GIVE ME SOMETHING PLEASE!)!)!)!)!!)!)!)!)!)!)!)!)!)!)!)!')
     if (this.props.selected) {
-      this.props.saveFrame(this.props.homeOrAway, this.state.paths, this.props.x, this.props.y);
+      this.props.saveFrame('home', this.state.paths, this.props.x, this.props.y);
     }
   }
 
@@ -160,7 +160,6 @@ class Frame extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('mapping state to props', state)
   return {
     frames: state.frames, 
     homeOrAway: state.game.selectedTeam.team
