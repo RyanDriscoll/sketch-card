@@ -2,7 +2,12 @@ import {ADD_PATHS, SELECT_GAME } from '../constants';
 import { REHYDRATE } from 'redux-persist/constants';
 
 const initialState = {
-    1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
+    home:{
+      1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
+    },
+    away:{
+      1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},  
+    }
     // 2: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
     // 3: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
     // 4: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
@@ -28,15 +33,16 @@ export default function (state = initialState, action) {
   const newState = Object.assign({}, state)
   switch (action.type) {
     // case ADD_INNING:
+
     case ADD_PATHS:
-      if (!newState[action.x]) {
-        newState[action.x] = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []};
+      if (!newState[action.team][action.x]) {
+        newState[action.team][action.x] = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []};
       }
-      newState[action.x] = Object.assign({}, newState[action.x], {
-          [action.y]: newState[action.x][action.y].concat(action.paths)
+      newState[action.team][action.x] = Object.assign({}, newState[action.team][action.x], {
+          [action.y]: newState[action.team][action.x][action.y].concat(action.paths)
         });
       break;
-
+    
     case SELECT_GAME:
       return initialState;
 

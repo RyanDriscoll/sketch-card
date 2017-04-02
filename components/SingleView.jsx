@@ -85,18 +85,24 @@ export class SingleView extends React.Component {
 
 
   render() {
-
     const x = this.props.params.x;
     const y = this.props.params.y;
+    const homeOrAway = this.props.params.homeOrAway;
+
     return (
         <div>
             <DisplayInfo batter={this.state.batter} inning={this.state.inning}/>
-            <Frame height={400} width={300} x={x} y={y} selected={true}/>
+            <Frame height={400} width={300} homeOrAway={homeOrAway} x={x} y={y} selected={true}/>
         </div>
     );
   }
 }
 
+
+function mapStateToProps(state) {
+  return {
+  };
+}
 
 function mapDispatchToProps(dispatch) {
 
@@ -106,5 +112,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapDispatchToProps)(SingleView);
+export default connect(mapDispatchToProps)(SingleView);
