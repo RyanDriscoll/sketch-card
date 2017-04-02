@@ -5,3 +5,5 @@ public/bundle.js.map
 public/stylesheets
 
 secret.js
+
+npm-debug.log
