@@ -115,3 +115,41 @@ td:hover {
   border-color: grey;
   float: left;
   border-style: solid; }
+
+#main-navbar {
+  border-bottom: 3px solid black;
+  margin-top: 0px;
+  width: 100%;
+  font-size: 1.4em;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  text-decoration: none;
+  background-color: white; }
+  #main-navbar ul a {
+    text-decoration: none;
+    color: black; }
+  #main-navbar ul li {
+    display: inline;
+    float: right;
+    margin: 5px;
+    padding: 15px;
+    text-decoration: none;
+    font-size: .5em; }
+
+.atBat {
+  width: 50%;
+  height: 200px;
+  border: 2px solid black; }
+
+.test {
+  width: 100%; }
+
+.test2 {
+  height: 12px; }
+
+.test3 {
+  height: 12px; }
+
+.test4 {
+  height: 12px; }

@@ -36,30 +36,24 @@ class scoreCard extends Component {
     browserHistory.push('/lineup');
   }
 
+      //   <div>
+      //   <div id="container">
+      //     {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
+      //     {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button1">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button1">{this.props.awayTeam}</button>}
+      //   </div>
+      //   <div id="batter">
+      //     <BatterDisplay addBatter={this.addBatter} team={this.selectedteam}/>
+      //   </div>
+      //     <FrameContainer />
+      // </div>
 
   render() {
-
-
     return (
-      <div>
-        <div>
-        <div id="container">
-          {this.state.home ? <button onClick={this.clickHome} className="btn btn-success" id="button1" >{this.props.homeTeam}</button> : <button onClick={this.clickHome} className="btn btn-success"className="btn btn-default" id="button1">{this.props.homeTeam}</button>}
-          {this.state.home ? <button onClick={this.clickAway} className="btn btn-default" id="button1">{this.props.awayTeam}</button> : <button onClick={this.clickAway} className="btn btn-success" id="button1">{this.props.awayTeam}</button>}
-        </div>
-        <div id="batter">
-          <BatterDisplay addBatter={this.addBatter} team={this.selectedteam}/>
-        </div>
-          <FrameContainer />
-      </div>
-
       <div>
         <ToggleTeam />
         <BatterContainer />
         <FrameContainer />
       </div>
-    </div>
-
     );
   }
 }
