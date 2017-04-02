@@ -15,7 +15,7 @@ export class FrameContainer extends React.Component {
     const x = 1; //this.props.x
     const frameArray = [];
     for (let y = 1; y <= 9; y++) {
-      frameArray.push(<Link to={`singleview/${this.props.homeOrAway}/${x}/${y}`} key={y} ><Frame height={200} width={150} x={x} y={y} selected={false} /></Link >);
+      frameArray.push(<Link to={`singleview/${this.props.homeOrAway}/${x}/${y}`} key={y} ><Frame height={200} width={150} homeOrAway={this.props.homeOrAway} x={x} y={y} selected={false} /></Link >);
     }
     return (
       <div>
@@ -30,7 +30,6 @@ export class FrameContainer extends React.Component {
 function mapStateToProps(state) {
 
   return {
-    homeOrAway: state.games.selectedTeam.team
   };
 }
 

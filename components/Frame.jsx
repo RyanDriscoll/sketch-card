@@ -163,7 +163,7 @@ function mapStateToProps(state) {
   console.log('44444444444444444',state)
   return {
     frames: state.frames, 
-    homeOrAway: state.games.selectedTeam.team
+    //homeOrAway: state.games.selectedTeam.team
   };
 }
 
