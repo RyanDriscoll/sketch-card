@@ -134,8 +134,8 @@ class Frame extends React.Component {
   }
 
   render() {
-    const width = this.props.selected ? '300px' : '150px';
-    const height = this.props.selected ? '400px' : '200px';
+    // const width = this.props.selected ? '300px' : '150px';
+    // const height = this.props.selected ? '400px' : '200px';
 
     return (
       <div>
@@ -149,8 +149,8 @@ class Frame extends React.Component {
           onMouseMove={this.handleMouseMove}
           onTouchMove={this.handleMouseMove}
           className="frame shadow"
-          width={width}
-          height={height}
+          width={`${this.props.width}px`}
+          height={`${this.props.height}px`}
           ref={el => { this.canvas = el; }}
         />
       </div>

@@ -17,6 +17,10 @@ const monthOrDayToString = (num) => {
   return num.toString();
 };
 
+const createTeamId = (name) => {
+  return name.toLowerCase().split(' ').join('-').replace(/[.]/g, '');
+};
+
 const year = today.getFullYear();
 const month = monthOrDayToString(today.getMonth() + 1);
 const day = monthOrDayToString(today.getDate());
@@ -35,9 +39,9 @@ router.get('/games', (req, res, next) => {
       sched.data.event.forEach(game => {
         const newGame = {};
         newGame.homeName = game.home_team.last_name;
-        newGame.homeId = game.home_team.full_name.toLowerCase().split(' ').join('-');
+        newGame.homeId = createTeamId(game.home_team.full_name);
         newGame.awayName = game.away_team.last_name;
-        newGame.awayId = game.away_team.full_name.toLowerCase().split(' ').join('-');
+        newGame.awayId = createTeamId(game.away_team.full_name);
         newGame.time = game.start_date_time;
         games.push(newGame);
       });
