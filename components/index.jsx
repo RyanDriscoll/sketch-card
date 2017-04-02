@@ -31,7 +31,7 @@ ReactDOM.render(
       <Route path="/" component={AppContainer}>
         <IndexRoute component={HomeContainer} onEnter={onHomeEnter} />
         <Route path ="/singleview" component={FrameContainer} />
-        <Route path ="/singleview/:x/:y" component={SingleView} />
+        <Route path ="/singleview/:howOrAway/:x/:y" component={SingleView} />
         <Route path ="/scorecard" component={scoreCard} />
         <Route path ="/lineup" component={LineupContainer} />
       </Route>

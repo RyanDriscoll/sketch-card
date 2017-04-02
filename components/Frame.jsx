@@ -35,7 +35,7 @@ class Frame extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const oldPaths = this.props.frames[this.props.homeOrAway][this.props.x][this.props.y];
-    const newPaths = nextProps.frames[this.nextProps.homeOrAway][nextProps.x][nextProps.y];
+    const newPaths = nextProps.frames[this.props.homeOrAway][nextProps.x][nextProps.y];
     if (oldPaths.length !== newPaths.length) {
       newPaths.forEach(path => {
         for (let i = 0; i < path.length - 1; i++) {
@@ -48,7 +48,7 @@ class Frame extends React.Component {
   componentWillUnmount() {
     console.log('GIVE ME SOMETHING PLEASE!)!)!)!)!!)!)!)!)!)!)!)!)!)!)!)!')
     if (this.props.selected) {
-      this.props.saveFrame('home', this.state.paths, this.props.x, this.props.y);
+      this.props.saveFrame(this.props.homeOrAway, this.state.paths, this.props.x, this.props.y);
     }
   }
 
@@ -160,9 +160,10 @@ class Frame extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('44444444444444444',state)
   return {
     frames: state.frames, 
-    homeOrAway: state.game.selectedTeam.team
+    homeOrAway: state.games.selectedTeam.team
   };
 }
 
