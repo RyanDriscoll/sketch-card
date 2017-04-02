@@ -27,8 +27,6 @@ export const receivePlayer = (player, team, order) => {
 
 export const getRosters = (game) => {
   return dispatch => {
-    // const homeId = game.homeCity.toLowerCase().split(' ').join('-') + '-' + game.homeName.toLowerCase().split(' ').join('-');
-    // const awayId = game.awayCity.toLowerCase().split(' ').join('-') + '-' + game.awayName.toLowerCase().split(' ').join('-');
     return axios.all([ axios.get(`/api/team/${game.homeId}`), axios.get(`/api/team/${game.awayId}`) ])
       .then(axios.spread(function(home, away) {
         dispatch(selectRosters(home.data, away.data));

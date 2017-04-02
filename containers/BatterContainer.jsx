@@ -22,7 +22,7 @@ class BatterContainer extends Component {
         } else {
           names = <div ></div>;
         }
-        lineup.push(<div style={{'height': '200px', 'width': '50%', 'border': '3px solid black'}} key={i} order={i}>{names}</div>);
+        lineup.push(<div className="atBat" key={i} order={i}>{names}</div>);
       }
     }
     return (
