@@ -45,9 +45,11 @@ export default function (state = initialState, action) {
     
     case SELECT_GAME:
       return initialState;
+      break;
 
     case REHYDRATE:
       return action.payload.frames;
+      break;
 
     default:
       return state;

@@ -17,6 +17,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log('GAMES', this.props.games);
     return (
       <div>
         <ul>
