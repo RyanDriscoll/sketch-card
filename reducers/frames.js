@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
       break;
 
     case REHYDRATE:
-      newState[action.x]=action.payload.frames;
+      return action.payload.frames;
       break;
 
     default:

@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
 
     case REHYDRATE:
       console.log(action.payload.games)
-       newState.games = action.payload.games;
+       return action.payload.games;
       break;
 
     default:

@@ -27,8 +27,9 @@ export default function (state = initialState, action) {
       return initialState;
 
     case REHYDRATE:
-  
-      newState.players = action.payload.players;
+
+      return action.payload.players;
+      break;
 
     default:
       return state;
