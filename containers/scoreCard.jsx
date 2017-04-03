@@ -48,11 +48,12 @@ class scoreCard extends Component {
       // </div>
 
   render() {
+    console.log('scorecards homeOrAwayProp',this.props.homeOrAway)
     return (
       <div>
         <ToggleTeam />
         <BatterContainer />
-        <FrameContainer />
+        <FrameContainer homeOrAway={this.props.homeOrAway} />
       </div>
     );
   }
@@ -60,9 +61,9 @@ class scoreCard extends Component {
 export default connect(mapStateToProps, mapDispatchToProps)(scoreCard);
 
 function mapStateToProps(state) {
+  console.log('!@!@!@!@!@!@!@!@!@!@!@@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!',state)
   return {
-    // homeTeam: state.games.selectedGame.homeName,
-    // awayTeam: state.games.selectedGame.awayName
+    homeOrAway: state.games.selectedTeam.team
   };
 }
 

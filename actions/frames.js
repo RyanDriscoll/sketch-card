@@ -1,8 +1,10 @@
 import {ADD_PATHS, NEXT_FRAME, PREVIOUS_FRAME} from '../constants';
 
-export const setPaths = (paths, x, y) => {
+//Home Team
+export const setPaths = (team, paths, x, y) => {
   return {
     type: ADD_PATHS,
+    team,
     paths,
     x,
     y
@@ -23,8 +25,8 @@ export const previousFrame = (prevFrame) => {
   };
 };
 
-export const receivePaths = (paths, x, y) => {
-  return dispatch => {
-    dispatch(setPaths(paths, x, y));
-  };
-};
+export const receivePaths = (team, paths, x, y) => {
+      return dispatch => {
+      dispatch(setPaths(team, paths, x, y));
+    };
+  }
